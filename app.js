@@ -3,11 +3,31 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const config = require('./config/database');
+
+require('./models/user');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// Connect To Database (OLD CODE)
+mongoose.connect(config.database, {useNewUrlParser: true, useUnifiedTopology: true});
+// On Connection
+mongoose.connection.on('connected', () => {
+  console.log('Connected to Database '+config.database);
+});
+// On Error
+mongoose.connection.on('error', (err) => {
+  console.log('Database error '+err);
+});
+
 var app = express();
+
+const users = require('./routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +57,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+app.use('/users', users);
 
 // Index Route
 app.get('/', (req, res) => {
