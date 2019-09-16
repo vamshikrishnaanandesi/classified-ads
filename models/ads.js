@@ -17,10 +17,10 @@ const AdSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    images: {
-        type: Array,
-        default: []
-    },
+    images: [{
+        name: String,
+        url: String
+    }],
     price: Number,
     posted_by: {
         type: Schema.Types.ObjectId,
