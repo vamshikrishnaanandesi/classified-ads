@@ -10,6 +10,7 @@ export class GridviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    sessionStorage.setItem('post','false');
   }
 
 }

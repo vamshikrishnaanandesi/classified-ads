@@ -3,7 +3,10 @@
         <div class="navbar-header">
             <a class="navbar-brand">CDU BULLETIN BOARD</a>
         </div>
-        <a class="nav-brand pull-right" routerLink="login">Login/Register</a>
+        <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off" ></span>
+            Logout</a>
+        <a class="nav-brand pull-right" (click)="login()" *ngIf="!isLoggedIn">Login/Register</a>
+        <button class="btn btn-danger pull-right mr2" *ngIf="postView">Report this Ad</button>
         <button class="btn btn-success pull-right mr2">Post an Ad</button>
     </div>
 </nav>

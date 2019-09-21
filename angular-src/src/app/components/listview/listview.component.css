@@ -1,6 +1,7 @@
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
+    margin-bottom: 20px;
 }
 .container{
 margin-top: 20px;

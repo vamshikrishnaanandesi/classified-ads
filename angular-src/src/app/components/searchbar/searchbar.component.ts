@@ -11,6 +11,7 @@ export class SearchbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    sessionStorage.setItem('post', 'false');
   }
   ul(index) {
     var underlines = document.querySelectorAll(".underline");

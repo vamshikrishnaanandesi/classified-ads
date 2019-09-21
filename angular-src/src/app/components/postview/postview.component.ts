@@ -10,6 +10,7 @@ export class PostviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    sessionStorage.setItem('post','true');
   }
 
 }

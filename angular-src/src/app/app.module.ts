@@ -10,7 +10,12 @@ import { GridviewComponent } from './components/gridview/gridview.component';
 import { ListviewComponent } from './components/listview/listview.component';
 import { PostviewComponent } from './components/postview/postview.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +29,12 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
