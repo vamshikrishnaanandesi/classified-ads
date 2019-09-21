@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  postView: boolean = false;
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    sessionStorage.setItem('post', 'false');
+    if (sessionStorage.getItem('post') == 'true') {
+      this.postView = true;
+    } else {
+      this.postView = false;
+    }
   }
 
-
+  login() {
+    this.router.navigate(['register']);
+  }
 }

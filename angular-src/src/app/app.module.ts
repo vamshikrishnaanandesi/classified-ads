@@ -10,6 +10,8 @@ import { GridviewComponent } from './components/gridview/gridview.component';
 import { ListviewComponent } from './components/listview/listview.component';
 import { PostviewComponent } from './components/postview/postview.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
