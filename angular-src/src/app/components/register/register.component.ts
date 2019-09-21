@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/common.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -14,10 +15,10 @@ export class RegisterComponent implements OnInit {
   match: boolean = true;
   emailPattern = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$';
   numberPattern = '[0-9]*';
-  constructor(private router: Router, private formBuilder: FormBuilder, private commonService: CommonService) { }
+  constructor(private toaster: ToastrService, private router: Router, private formBuilder: FormBuilder, private commonService: CommonService) { }
 
   ngOnInit() {
-    sessionStorage.setItem('post','false');
+    sessionStorage.setItem('post', 'false');
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(this.emailPattern)])],
@@ -39,7 +40,13 @@ export class RegisterComponent implements OnInit {
       return;
     } else {
       this.commonService.register(this.registerForm.value).subscribe(value => {
-        console.log(value);
+        console.log(value)
+        if (value.success) {
+          this.toaster.success('Registration Successful.', 'Success!');
+          this.login();
+        } else {
+          this.toaster.error('Internal Server Error, Please try later.', 'Error!')
+        }
       })
     }
   }

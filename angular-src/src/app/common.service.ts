@@ -11,6 +11,7 @@ export class CommonService {
   constructor(private http: HttpClient) { }
 
   register(data: any): Observable<any> {
+    console.log(data)
     return this.http.post(this._config.urls.api + 'users/register', data)
   }
 
