@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private toaster: ToastrService) { }
 
   ngOnInit() {
-    sessionStorage.setItem('post', 'false');
     if (sessionStorage.getItem('post') == 'true') {
       this.postView = true;
     } else {
