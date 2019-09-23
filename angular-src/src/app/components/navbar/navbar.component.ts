@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class NavbarComponent implements OnInit {
   postView: boolean = false;
   isLoggedIn: boolean = false;
+  breadcrumlist: any = ['Home'];
   constructor(private router: Router, private toaster: ToastrService) { }
 
   ngOnInit() {
