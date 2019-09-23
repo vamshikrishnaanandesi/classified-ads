@@ -19,7 +19,11 @@ const UserSchema = mongoose.Schema ({
   },
   profile_pic:String,
   age: Number,
-  gender: { type: String, enum: ['male', 'female']}
+  gender: { type: String, enum: ['male', 'female']},
+  role: {
+    type: String,
+    enum: ['user', 'admin']
+  }
 }, {timestamps: true});
 
 const User = module.exports = mongoose.model('User', UserSchema);
