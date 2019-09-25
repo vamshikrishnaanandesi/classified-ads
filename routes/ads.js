@@ -68,7 +68,7 @@ router.post("/get_one_ad", (req, res) => {
     adService
       .findOneAd(query)
       .then(response => {
-        console.log(response, 'fdasf');
+        console.log(response, "fdasf");
         if (!response) {
           throw {
             reason: "failed"
@@ -108,6 +108,58 @@ router.post("/get_one_ad", (req, res) => {
       .status(HttpStatus.UNAUTHORIZED)
       .json({ success: false, msg: "Required params missing", errors: errors });
   }
-}); // find one product - end
+}); // find one product - endquery
+
+// find one product -start
+router.get("/get_top_picks", (req, res) => {
+  adService
+    .findTopPicks()
+    .then(response => {
+      console.log(response, "fdasf");
+      if (!response) {
+        throw {
+          reason: "failed"
+        };
+      } else {
+        for (i = 0; i < response.length; i++) {
+          let image_data = [];
+          if (response[i].images.length != 0) {
+            response[i].images.forEach(element => {
+              image_data.push({
+                url: utils.getPreSignedURL(element.url)
+              });
+            });
+          }
+          response[i].images = image_data;
+        }
+        res
+          .status(HttpStatus.ACCEPTED)
+          .json({ success: true, msg: "Fetched", data: response });
+      }
+    })
+    .catch(err => {
+      if (err.reason == "failed") {
+        res
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ success: false, msg: "Id not Found" });
+      } else if (err.name === "MongoError" && err.code === 11000) {
+        return res
+          .status(HttpStatus.METHOD_NOT_ALLOWED)
+          .json({ success: false, msg: "duplicate error", error: err });
+      } else {
+        return res
+          .status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .json({ success: false, msg: "Internal server error", error: err });
+      }
+    });
+}); // find one product - endquery
+
+//Get top picks API start
+// router.get('/get_top_picks', (req, res) => {
+//   adService.findTopPicks()
+//   .then((response) => {
+//     console.log(response, 'top_picks_response');
+//   })
+// })
 
 module.exports = router;
