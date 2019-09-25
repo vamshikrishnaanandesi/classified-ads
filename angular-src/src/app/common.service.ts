@@ -18,4 +18,8 @@ export class CommonService {
   login(data: any): Observable<any> {
     return this.http.post(this._config.urls.api + 'users/authenticate', data)
   }
+
+  postAd(data: any): Observable<any> {
+    return this.http.post(this._config.urls.api + 'ads/post_ad', data)
+  }
 }

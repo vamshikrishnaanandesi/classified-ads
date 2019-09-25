@@ -32,8 +32,8 @@ margin-left: 180px !important;
 }
 
 .form-control{
- width: 580px !important;
- margin-right:5px !important;
+//  width: 580px !important;
+//  margin-right:5px !important;
 }
 
 nav {
@@ -110,4 +110,19 @@ nav.full {
 .nav-brand{
 	width: 0px !important;
 	margin-right: 90px !important;
+}
+
+.col-md-12{
+	margin-top: 25px !important;
+}
+
+.invalid-feedback{
+	color: #dc3545;
+}
+.is-invalid{
+	border: 1px solid #dc3545 !important;
+}
+
+.col-12{
+	margin-top: 10px !important;
 }

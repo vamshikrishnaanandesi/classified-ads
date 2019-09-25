@@ -3,10 +3,146 @@
         <div class="navbar-header">
             <a class="navbar-brand">CDU BULLETIN BOARD</a>
         </div>
-        <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off" ></span>
+        <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
             Logout</a>
         <a class="nav-brand pull-right" (click)="login()" *ngIf="!isLoggedIn">Login/Register</a>
         <button class="btn btn-danger pull-right mr2" *ngIf="postView">Report this Ad</button>
-        <button class="btn btn-success pull-right mr2">Post an Ad</button>
+        <button class="btn btn-success pull-right mr2" data-toggle="modal" data-target="#myModal">Post an Ad</button>
     </div>
 </nav>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Post An Ad</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form [formGroup]="postForm">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-md-6">
+                                <label>AD Type</label>
+                                <select formControlName="ad_type" type="text" name="ad_type" class="form-control"
+                                    placeholder="Ad Type" value=""
+                                    [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }">
+                                    <option value="">Select</option>
+                                    <option value="sell">Sell</option>
+                                </select>
+                                <div *ngIf="submitted && f.ad_type.errors" class="invalid-feedback">
+                                    <div *ngIf="f.ad_type.errors.required">Ad Type is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Title</label>
+                                <input [ngClass]="{ 'is-invalid': submitted && f.title.errors }" class="form-control"
+                                    formControlName="title" type="text">
+                                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                    <div *ngIf="f.title.errors.required">Title is required.</div>
+                                    <div *ngIf="f.title.errors.minlength">Title must be at least 3
+                                        characters..</div>
+                                    <div *ngIf="f.title.errors.maxlength">Title must not be exceed 30
+                                        characters.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-12">
+                            <div class="col-md-6">
+                                <label>Price</label>
+                                <input type="text" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price">
+                                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                    <div *ngIf="f.price.errors.required">Price is required.</div>
+                                    <div *ngIf="f.price.errors.minlength">Price must be at least 1
+                                        characters..</div>
+                                    <div *ngIf="f.price.errors.maxlength">Price must not be exceed 6
+                                        characters.</div>
+                                    <div *ngIf="f.price.errors.pattern">Please Enter Valid Price.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Category</label>
+                                <select formControlName="category" type="text" name="category" class="form-control"
+                                    placeholder="electronics" value=""
+                                    [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                                    <option value="">Select</option>
+                                    <option value="electronics">Electronics</option>
+                                </select>
+                                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                    <div *ngIf="f.category.errors.required">Category is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-12">
+                            <div class="col-md-6">
+                                <label>Status</label>
+                                <select formControlName="status" type="text" name="Status" class="form-control"
+                                    placeholder="status" value=""
+                                    [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                                    <option value="">Select</option>
+                                    <option value="active">Active</option>
+                                </select>
+                                <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                    <div *ngIf="f.status.errors.required">Status is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>User Type</label>
+                                <select formControlName="user_type" type="text" name="user_type" class="form-control"
+                                    placeholder="user_type" value=""
+                                    [ngClass]="{ 'is-invalid': submitted && f.user_type.errors }">
+                                    <option value="">Select</option>
+                                    <option value="user">User</option>
+                                </select>
+                                <div *ngIf="submitted && f.user_type.errors" class="invalid-feedback">
+                                    <div *ngIf="f.user_type.errors.required">User Type is required.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="col-12">
+                            <div class="col-md-12">
+                                <label>Contact Details</label>
+                                <textarea type="text" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.contact_details.errors }"
+                                    formControlName="contact_details">
+                                </textarea>
+                                <div *ngIf="submitted && f.contact_details.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contact_details.errors.minlength">Contact Details must be at least 3
+                                        characters.</div>
+                                    <div *ngIf="f.contact_details.errors.maxlength">Contact Details must not be exceed
+                                        100
+                                        characters.</div>
+                                    <div *ngIf="f.contact_details.errors.required">Contact Details is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-12">
+                            <div class="col-md-12">
+                                <label>Upload Images</label>
+                                <input type='file' (change)="onSelectFile($event)" multiple class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="postAd()">Post</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
