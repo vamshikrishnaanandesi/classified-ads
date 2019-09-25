@@ -17,7 +17,9 @@ const AdSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    images: String,
+    images: [{
+        url: String
+    }],
     price: Number,
     posted_by: {
         type: Schema.Types.ObjectId,

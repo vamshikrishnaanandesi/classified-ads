@@ -3,51 +3,49 @@ var router = express.Router();
 var multer = require("multer");
 var AWS = require("aws-sdk");
 
-var storage = multer.memoryStorage({
-  destination: function(req, file, callback) {
-    callback(null, "");
+AWS.config.loadFromPath('./config/s3_credentials.json');
+const BucketName = "the-cdu-project";
+const s3Bucket = new AWS.S3({ params: { Bucket: BucketName } });
+
+const uploadToS3 = (fileName, fileExt, fileData, isCampaign, callback) => {
+  let data = new Buffer(fileData.replace("data:image\/" + fileExt + ";base64,", ""), "base64")
+  console.log(data, 'notif_data');
+  var uploadabledata = {
+      ACL: 'public-read',
+      Key: fileName + '.' + fileExt,
+      Body: data,
+      ContentType: 'image/' + fileExt
+  };
+  s3Bucket.putObject(uploadabledata, function(err, response) {
+      if (err) {
+          console.log('Error in uploading', err);
+      } else {
+          console.log("uploaded: ", fileName+"."+fileExt);
+          if(isCampaign)
+              callback(response);
+
+      }
+  });
+};
+
+const getPreSignedURL = (awsFileKey) => {
+  let s3 = new AWS.S3();
+  let params = {
+      Bucket: BucketName,
+      Key: awsFileKey
+  };
+  try {
+      let url = s3.getSignedUrl('getObject', params);
+      return url;
+      
+  } catch (err) {
+
+      return "";
+      
   }
-});
-var multipleUpload = multer({ storage: storage }).array("file");
-var upload = multer({ storage: storage }).single("images");
-
-const BUCKET_NAME = "the-cdu-project";
-const IAM_USER_KEY = "AKIAJD5DS5AL4AQ7UYSQ";
-const IAM_USER_SECRET = "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";
-
-function upload_files(data) {
-    console.log(data,'here');
-  let s3bucket = new AWS.S3({
-    accessKeyId: IAM_USER_KEY,
-    secretAccessKey: IAM_USER_SECRET,
-    Bucket: BUCKET_NAME
-  });
-
-  s3bucket.createBucket(function() {
-    let Bucket_Path = "BUCKET_PATH";
-    //Where you want to store your file
-    var ResponseData = [];
-      var params = {
-        Bucket: BucketPath,
-        Key: item.originalname,
-        Body: item.buffer,
-        ACL: "public-read"
-      };
-      s3bucket.upload(params, function(err, data) {
-        if (err) {
-          res.json({ error: true, Message: err });
-        } else {
-          ResponseData.push(data);
-          if (ResponseData.length == file.length) {
-            return ResponseData;
-          }
-        }
-      });
-  });
 }
 
 module.exports = {
-    upload_files,
-    multipleUpload,
-    upload
+  uploadToS3,
+  getPreSignedURL
 }
