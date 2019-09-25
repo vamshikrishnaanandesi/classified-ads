@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
+import { CommonService } from 'src/app/common.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +12,13 @@ import { ToastrService } from 'ngx-toastr';
 export class NavbarComponent implements OnInit {
   postView: boolean = false;
   isLoggedIn: boolean = false;
-  constructor(private router: Router, private toaster: ToastrService) { }
+  breadcrumlist: any = ['Home'];
+  postForm: FormGroup;
+  submitted: boolean = false;
+  tempImages: any = [];
+  numPattern = '[0-9]*';
+  urls: any = [];
+  constructor(private router: Router, private toaster: ToastrService, private formBuilder: FormBuilder, private commonservice: CommonService) { }
 
   ngOnInit() {
     if (sessionStorage.getItem('post') == 'true') {
@@ -23,7 +31,19 @@ export class NavbarComponent implements OnInit {
     } else {
       this.isLoggedIn = false;
     }
+
+    this.postForm = this.formBuilder.group({
+      'ad_type': ['', Validators.required],
+      'title': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
+      'category': ['', Validators.required],
+      'price': ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(this.numPattern)])],
+      "contact_details": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      "status": ['', Validators.required],
+      "user_type": ['', Validators.required]
+    })
   }
+
+  get f() { return this.postForm.controls }
 
   login() {
     this.router.navigate(['register']);
@@ -34,4 +54,43 @@ export class NavbarComponent implements OnInit {
     this.toaster.success('Logout Successful', 'Success!');
     this.ngOnInit();
   }
+
+  postAd() {
+    this.submitted = true;
+    if (this.postForm.invalid) {
+      return;
+    } else {
+      this.postForm.addControl('images', new FormControl(this.tempImages, Validators.required));
+      this.commonservice.postAd(this.postForm.value).subscribe(value => {
+        if (value.success) {
+          this.toaster.success('Ad Posted Successfully', 'Success!');
+          this.postForm.reset();
+          // $('#myModal').modal('hide');
+        } else {
+          this.toaster.error('Internal Server Error, Please try again later', 'Error!')
+        }
+      })
+    }
+  }
+
+
+  onSelectFile(evt) {
+    for (let i = 0; i < evt.target.files.length; i++) {
+      var files = evt.target.files[i];
+      var file = files
+      if (files && file) {
+        var reader = new FileReader();
+        reader.onload = this._handleReaderLoaded.bind(this);
+        reader.readAsBinaryString(file);
+      }
+    }
+
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    var base64textString = btoa(binaryString);
+    this.tempImages.push({ 'image_data': base64textString })
+  }
+
 }
