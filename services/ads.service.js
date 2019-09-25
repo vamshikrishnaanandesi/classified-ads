@@ -17,8 +17,12 @@ const findTopPicks = () => {
   ]);
 };
 
+const getAdsByType = query => {
+    return Ads.find(query).exec();
+}
 module.exports = {
   createAd,
   findOneAd,
-  findTopPicks
+  findTopPicks,
+  getAdsByType
 };
