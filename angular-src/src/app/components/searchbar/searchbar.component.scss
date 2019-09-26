@@ -14,7 +14,9 @@
 .navbar-brand{
   margin-left: 15px !important;
 }
-
+a{
+	text-decoration: none !important
+}
 .navbar-inverse{
   background-color: #d8d6d9 !important;
   border-color: #d8d6d9 !important;
@@ -46,6 +48,7 @@ nav {
 }
 
 .underline {
+	text-decoration: none;
 	display: block;
 	position: absolute;
 	z-index: 0;
@@ -103,5 +106,12 @@ nav.full {
 
 
 .menu{
-  text-decoration: none;
+  text-decoration: none !important;
+  color: darkmagenta;
+  background-color: #d8d6d9
+}
+.test{
+	text-decoration: none !important;
+	color: darkmagenta;
+	background-color: #d8d6d9
 }

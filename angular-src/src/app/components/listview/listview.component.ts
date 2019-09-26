@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
   styleUrls: ['./listview.component.css'],
-  providers:[NavbarComponent]
+  providers: [NavbarComponent]
 })
 export class ListviewComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  cat: string;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    sessionStorage.setItem('post','false');
+    this.activatedRoute.params.subscribe(data => {
+      alert(data.val)
+    })
   }
 
   postView() {

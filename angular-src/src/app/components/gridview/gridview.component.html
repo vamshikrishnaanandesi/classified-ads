@@ -3,81 +3,20 @@
 <div class="container">
     <div class="row text-center portfolio">
         <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4">
-            <div class="panel panel-default">
+        <div class="col-lg-2 col-sm-3 col-xs-4" *ngFor="let x of topPicks">
+            <div class="panel panel-default" style="margin-bottom: 100px">
                 <div class="panel-body">
+                    <span class="ad_type">{{x.ad_type}}</span>
                     <a>
-                        <img routerLink="post" src="http://placehold.it/200x200" class="img-thumbnail img-responsive">
+                        <img (click)="get_one_ad(x._id)"
+                            [src]="x.images.length!==0?x.images[0]:'../assets/images/images.png'"
+                            class="img-thumbnail img-responsive">
                     </a>
                 </div>
                 <div class="panel-footer">
-                    And, once again, here is a longer description given to a thumbnail grouping.
+                    {{x.title | uppercase}}
                 </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a>
-                        <img routerLink="post" src="http://placehold.it/200x200" class="img-thumbnail img-responsive">
-                    </a>
-                </div>
-                <div class="panel-footer">
-                    And, once again, here is a longer description given to a thumbnail grouping.
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a>
-                        <img routerLink="post" src="http://placehold.it/200x200" class="img-thumbnail img-responsive">
-                    </a>
-                </div>
-                <div class="panel-footer">
-                    And, once again, here is a longer description given to a thumbnail grouping.
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a>
-                        <img routerLink="post" src="http://placehold.it/200x200" class="img-thumbnail img-responsive">
-                    </a>
-                </div>
-                <div class="panel-footer">
-                    And, once again, here is a longer description given to a thumbnail grouping.
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a>
-                        <img routerLink="post" src="http://placehold.it/200x200" class="img-thumbnail img-responsive">
-                    </a>
-                </div>
-                <div class="panel-footer">
-                    And, once again, here is a longer description given to a thumbnail grouping.
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a>
-                        <img routerLink="post" src="http://placehold.it/200x200" class="img-thumbnail img-responsive">
-                    </a>
-                </div>
-                <div class="panel-footer">
-                    And, once again, here is a longer description given to a thumbnail grouping.
-                </div>
+                {{x.category}} | <span class="price"> $ {{x.price}}</span>
             </div>
         </div>
         <div class="clear"></div>

@@ -8,12 +8,13 @@
     </div>
 </nav>
 <nav class="full navbar">
-    <div class="underline"></div>
-    <div class="underline"></div>
-    <div class="underline"></div>
-    <a (click)="ul(0)" class="menu">Accommodations</a>
-    <a (click)="ul(1)" class="menu">Bikes, Motorbikes, and Cars</a>
-    <a (click)="ul(2)" class="menu">Books</a>
-    <a (click)="ul(3)" class="menu">Campus Events</a>
-    <a (click)="ul(4)" class="menu">Lost & found</a>
+    <a [ngClass]="(cat=='Accommodations')?'menu':''" (click)="get_list('Accommodations')">Accommodations</a>
+    <a [ngClass]="(cat=='Bikes')?'menu':''" (click)="get_list('Bikes')">Bikes, Motorbikes, and Cars</a>
+    <a [ngClass]="(cat=='Books')?'menu':''" (click)="get_list('Books')">Books</a>
+    <a [ngClass]="(cat=='Campus')?'menu':''" (click)="get_list('Campus')">Campus Events</a>
+    <a [ngClass]="(cat=='Lost')?'menu':''" (click)="get_list('Lost')">Lost & found</a>
 </nav>
+<ul *ngIf="active" class="breadcrumb" style="padding-left:  50px">
+    <li><a (click)="backToPage()">Home</a></li>
+    <li>{{cat}}</li>
+</ul>
