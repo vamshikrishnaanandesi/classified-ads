@@ -17,7 +17,6 @@ export class PostviewComponent implements OnInit {
 
   ngOnInit() {
     sessionStorage.setItem('post', 'true');
-    this.list = (this.router.url.split('/')[1] == 'list') ? true : false;
     this.activedRoute.params.subscribe(data => {
       this.commonService.getOnead(data.id).subscribe(data => {
         this.ad = data.data;

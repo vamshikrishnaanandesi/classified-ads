@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -10,9 +10,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class ListviewComponent implements OnInit {
   cat: string;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(data => {
+      alert(data.val)
+    })
   }
 
   postView() {
