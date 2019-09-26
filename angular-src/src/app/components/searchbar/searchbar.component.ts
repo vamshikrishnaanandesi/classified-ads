@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-searchbar',
@@ -7,17 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  cat: any = '';
+  active: boolean = false;
+  first: boolean = true;
+  constructor(private router: Router, private _location: Location) { }
 
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
+    this.active = (this.router.url !== '/') ? true : false;
   }
-  ul(index) {
-    var underlines = document.querySelectorAll(".underline");
-    for (var i = 0; i < underlines.length; i++) {
-      underlines[i]['style'].transform = 'translate3d(' + index * 100 + '%,0,0)';
-    }
-    this.router.navigate(['list']);
+
+  get_list(val) {
+    this.router.navigate(['list', { 'val': val }]);
+    this.cat = val;
+  }
+
+  backToPage() {
+    this._location.back();
   }
 }

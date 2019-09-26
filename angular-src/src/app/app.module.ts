@@ -15,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- 
+import { NgImageSliderModule } from 'ng-image-slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SearchbarComponent,
   ],
   imports: [
+    NgImageSliderModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,

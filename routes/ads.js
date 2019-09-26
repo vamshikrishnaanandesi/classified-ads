@@ -35,6 +35,7 @@ function upload_images(images_data) {
 } // Upload multiple images to s3 bucket - end
 
 router.post("/post_ad", (req, res) => {
+  console.log("ok",req.body)
   let data = req.body;
   if (data.images) {
     data.images = upload_images(data.images);
@@ -52,6 +53,7 @@ router.post("/post_ad", (req, res) => {
     })
     .catch(err => {
       if ((err.reason = "failed")) {
+        console.log(err)
         res.json({ status: HttpStatus.INTERNAL_SERVER_ERROR, msg: err });
       }
     });

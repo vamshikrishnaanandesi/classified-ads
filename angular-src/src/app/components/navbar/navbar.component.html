@@ -6,8 +6,9 @@
         <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
             Logout</a>
         <a class="nav-brand pull-right" (click)="login()" *ngIf="!isLoggedIn">Login/Register</a>
-        <button class="btn btn-danger pull-right mr2" *ngIf="postView">Report this Ad</button>
-        <button class="btn btn-success pull-right mr2" data-toggle="modal" data-target="#myModal">Post an Ad</button>
+        <button class="btn btn-danger pull-right mr2" *ngIf="postView" (click)="openReportModal()">Report this
+            Ad</button>
+        <button class="btn btn-success pull-right mr2" id="myBtn" (click)="openPostModal()">Post an Ad</button>
     </div>
 </nav>
 
@@ -33,6 +34,10 @@
                                     [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }">
                                     <option value="">Select</option>
                                     <option value="sell">Sell</option>
+                                    <option value="lost-found">Lost-Found</option>
+                                    <option value="buy">Buy</option>
+                                    <option value="rent">Rent</option>
+                                    <option value="events">Events</option>
                                 </select>
                                 <div *ngIf="submitted && f.ad_type.errors" class="invalid-feedback">
                                     <div *ngIf="f.ad_type.errors.required">Ad Type is required.</div>
@@ -74,6 +79,10 @@
                                     [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
                                     <option value="">Select</option>
                                     <option value="electronics">Electronics</option>
+                                    <option value="books">Books</option>
+                                    <option value="jewellery">Jewellery</option>
+                                    <option value="vehicles">Vehicles</option>
+                                    <option value="misc">Misc.</option>
                                 </select>
                                 <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
                                     <div *ngIf="f.category.errors.required">Category is required.</div>
@@ -90,21 +99,11 @@
                                     [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
                                     <option value="">Select</option>
                                     <option value="active">Active</option>
+                                    <option value="claimed">Claimed</option>
+                                    <option value="reported">Reported</option>
                                 </select>
                                 <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
                                     <div *ngIf="f.status.errors.required">Status is required.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label>User Type</label>
-                                <select formControlName="user_type" type="text" name="user_type" class="form-control"
-                                    placeholder="user_type" value=""
-                                    [ngClass]="{ 'is-invalid': submitted && f.user_type.errors }">
-                                    <option value="">Select</option>
-                                    <option value="user">User</option>
-                                </select>
-                                <div *ngIf="submitted && f.user_type.errors" class="invalid-feedback">
-                                    <div *ngIf="f.user_type.errors.required">User Type is required.</div>
                                 </div>
                             </div>
                         </div>

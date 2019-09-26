@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
         if (value.success) {
           this.toaster.success('Login Successful', 'Success!');
           sessionStorage.setItem('login', 'true');
+          sessionStorage.setItem('userID', value.user.id);
           this.router.navigate(['']);
         } else {
           this.toaster.error('Invalid Crediantials', 'Error!')

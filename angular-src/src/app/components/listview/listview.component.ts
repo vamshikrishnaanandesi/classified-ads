@@ -6,14 +6,13 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'app-listview',
   templateUrl: './listview.component.html',
   styleUrls: ['./listview.component.css'],
-  providers:[NavbarComponent]
+  providers: [NavbarComponent]
 })
 export class ListviewComponent implements OnInit {
-
+  cat: string;
   constructor(private router: Router) { }
 
   ngOnInit() {
-    sessionStorage.setItem('post','false');
   }
 
   postView() {
