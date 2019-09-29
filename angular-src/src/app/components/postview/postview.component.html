@@ -2,13 +2,18 @@
 
 <div class="container">
     <section class="grid-col-12" style="margin-top: 50px">
-        <ng-image-slider [images]="imageObject" [imageSize]="{width: 620, height: 300}" [autoSlide]="10">
-        </ng-image-slider>
+        <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
+            <div class="item" *ngFor="let image of mySlideImages;let i = index">
+                <div>
+                    <img src={{image}} />
+                </div>
+            </div>
+        </owl-carousel>
     </section>
 
     <section class="grid-col-12">
         <h3 class="h-underline-s">Description</h3>
-        <h5 style="color: green;font-weight: bold">{{ad.title | uppercase}}</h5>
+        <h5>{{ad.title | uppercase}}</h5>
         <div class="span-12">
             <ol class="name-value" style="width: 100%;">
                 <li>
@@ -27,9 +32,10 @@
                     <label for="about">Status</label>
                     <span id="Span2">{{ad.status}}</span>
                 </li>
+                <hr>
                 <li>
                     <label for="about">Contact Details</label>
-                    <span id="Span2">{{ad.contact_details}}</span>
+                    <span id="Span2" style="text-align:justify">{{ad.contact_details}}</span>
                 </li>
             </ol>
         </div>

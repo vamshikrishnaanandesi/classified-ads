@@ -59,15 +59,18 @@ ol.name-value li {
 ol.name-value li label {
     display: table-cell;
     width: 50%; 
-    color: #01447e
+    color: #01447e;
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 ol.name-value li span {
     display: table-cell;
     width: 50%; 
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 .span-12{
-  background-color: #E8E8E8;
-  padding: 25px 10px 25px 10px;
+  background-color: #f1ffec;
+  padding: 25px 100px 25px 10px;
 }
+

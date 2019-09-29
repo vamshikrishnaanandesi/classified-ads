@@ -14,7 +14,7 @@ export class ListviewComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(data => {
-      alert(data.val)
+      // alert(data.val)
     })
   }
 
