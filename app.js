@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const config = require("./config/database");
+const cors = require("cors");
 
 require("./models/user");
 require("./models/ads.model");
