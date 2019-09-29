@@ -3,7 +3,7 @@ var router = express.Router();
 var multer = require("multer");
 var AWS = require("aws-sdk");
 
-AWS.config.loadFromPath('./config/s3_credentials.json');
+AWS.config.loadFromPath('s3_credentials.json');
 const BucketName = "the-cdu-project";
 const s3Bucket = new AWS.S3({ params: { Bucket: BucketName } });
 
