@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { CommonService } from 'src/app/common.service';
-declare var jquery: any;
-declare var $: any;
+import * as $ from "jquery";
+// import * as bootstrap from "bootstrap";
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -46,6 +46,7 @@ export class NavbarComponent implements OnInit {
     sessionStorage.removeItem('userID')
     this.toaster.success('Logout Successful', 'Success!');
     this.ngOnInit();
+    this.router.navigate(['register']);
   }
 
   postAd() {
@@ -91,7 +92,7 @@ export class NavbarComponent implements OnInit {
 
   openPostModal() {
     if (this.isLoggedIn)
-      $("#myModal").modal('show');
+      <any>jQuery("#myModal").modal('show');
     else
       this.router.navigate(['login'])
   }
