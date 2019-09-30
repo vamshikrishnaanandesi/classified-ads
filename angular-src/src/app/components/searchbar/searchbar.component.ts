@@ -15,7 +15,7 @@ export class SearchbarComponent implements OnInit {
 
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
-    this.active = (this.router.url !== '/') ? true : false;
+    this.active = (this.router.url !== '/' && this.router.url !== '/gridview') ? true : false;
     this.activatedRoute.params.subscribe(data => {
       this.cat = data.val
     })
