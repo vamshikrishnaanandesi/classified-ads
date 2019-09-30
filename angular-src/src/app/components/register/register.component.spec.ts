@@ -29,8 +29,7 @@ describe('RegisterComponent', () => {
     SearchbarComponent,
       ],
       providers: [
-        FormBuilder,
-        OwlCarousel
+        FormBuilder
       ],
       imports:[FormsModule,HttpClientModule,AppRoutingModule,BrowserModule,ReactiveFormsModule,ToastrModule.forRoot()]
     })
