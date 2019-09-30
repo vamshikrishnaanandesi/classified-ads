@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonService } from 'src/app/common.service';
 
 @Component({
   selector: 'app-listview',
@@ -9,16 +10,19 @@ import { NavbarComponent } from '../navbar/navbar.component';
   providers: [NavbarComponent]
 })
 export class ListviewComponent implements OnInit {
-  cat: string;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  listView: any;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(data => {
-      // alert(data.val)
+      this.commonService.getAdType(data).subscribe(value => {
+        console.log(value);
+        this.listView = value.data;
+      })
     })
   }
 
-  postView() {
-    this.router.navigate(['post'])
+  redirectToPost(id: any) {
+    this.router.navigate(['post', { id: id }])
   }
 }

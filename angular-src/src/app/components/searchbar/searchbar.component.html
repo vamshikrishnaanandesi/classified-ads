@@ -1,20 +1,29 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <div class="navbar-form navbar-left">
-            <input type="text" class="form-control" placeholder="Search" name="search">
-            <button type="submit" class="btn btn-primary">Search <i class="fa fa-search"></i></button>
-
+        <div class="navbar-form" style="align-content: center">
+            <div class="CommentBox">
+                <input type="text" class="form-control"/>
+                <button class="btn btn-primary"> Search</button>
+            </div>
         </div>
     </div>
 </nav>
-<nav class="full navbar">
-    <a [ngClass]="(cat=='Accommodations')?'menu':''" (click)="get_list('Accommodations')">Accommodations</a>
-    <a [ngClass]="(cat=='Bikes')?'menu':''" (click)="get_list('Bikes')">Bikes, Motorbikes, and Cars</a>
-    <a [ngClass]="(cat=='Books')?'menu':''" (click)="get_list('Books')">Books</a>
-    <a [ngClass]="(cat=='Campus')?'menu':''" (click)="get_list('Campus')">Campus Events</a>
-    <a [ngClass]="(cat=='Lost')?'menu':''" (click)="get_list('Lost')">Lost & found</a>
+<nav class="navbar navbar-inverse" style="background-color:  white">
+    <div class="container-fluid" style="background-color: white">
+        <ul class="nav navbar-nav">
+            <li [ngClass]="(cat==x.ad_type.value)?'dropdown menu':'dropdown'" *ngFor="let x of listItem">
+                <a class="dropdown-toggle" data-toggle="dropdown">{{x.ad_type.display}}
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li *ngFor="let y of x.ad_category"><a (click)="get_list(x.ad_type.value,y.value)">{{y.display}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </nav>
 <ul *ngIf="active" class="breadcrumb" style="padding-left:  50px">
-    <li><a (click)="backToPage()">Home</a></li>
-    <li>{{cat}}</li>
+    <li><a (click)="backToPage()">HOME</a></li>
+    <li>{{cat | uppercase}}</li>
+    <li>{{subcat | uppercase}}</li>
 </ul>
