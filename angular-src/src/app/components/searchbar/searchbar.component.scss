@@ -29,14 +29,14 @@ a{
   color: #ffffff !important;
 }
 
-.navbar-form{
-margin-left: 210px !important;
-}
+// .navbar-form{
+// margin-left: 210px !important;
+// }
 
-.form-control{
- width: 580px !important;
- margin-right:5px !important;
-}
+// .form-control{
+//  width: 580px !important;
+//  margin-right:5px !important;
+// }
 
 nav {
 	position: relative;
@@ -107,8 +107,27 @@ nav.full {
 
 .menu{
   text-decoration: none !important;
-  background-color:  #3c3241;
+  background-color:  #080808;
   color: whitesmoke;
   font-size: 12px;
   border-radius: 2%;
+}
+.navbar-nav>li{
+	width: 100px !important;
+	margin-left: 100px !important
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+	width: 110px !important;
+	background-color: none !important;
+}
+.CommentBox {
+    width:800px;
+    height:50px;
+    color:White;
+    margin:0 auto;
+    text-align:center; /* I added this extra proeprty*/
+}
+.CommentBox>input{
+   width: 500px;
+   margin-right: 10px;
 }

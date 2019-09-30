@@ -1,18 +1,18 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" routerLink="">CDU BULLETIN BOARD</a>
+            <a class="navbar-brand" [routerLink]="isLoggedIn?['/gridview']:['']">CDU BULLETIN BOARD</a> </div> <a
+                class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
+                Logout</a>
+            <a class="nav-brand pull-right" (click)="login()" *ngIf="!isLoggedIn">Login/Register</a>
+            <button class="btn btn-danger pull-right mr2" *ngIf="postView" (click)="openReportModal()">Report this
+                Ad</button>
+            <button class="btn btn-success pull-right mr2" data-toggle="modal" data-target="#myModal"
+                (click)="openModal()">Post an Ad</button>
         </div>
-        <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
-            Logout</a>
-        <a class="nav-brand pull-right" (click)="login()" *ngIf="!isLoggedIn">Login/Register</a>
-        <button class="btn btn-danger pull-right mr2" *ngIf="postView" (click)="openReportModal()">Report this
-            Ad</button>
-        <!-- <button class="btn btn-success pull-right mr2" id="myBtn" (click)="openPostModal()">Post an Ad</button> -->
-    </div>
 </nav>
 
-<div class="modal" id="myModal">
+<div id="{{idName}}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
