@@ -48,7 +48,7 @@ router.post("/post_ad", (req, res) => {
           reason: "failed"
         };
       } else {
-        res.json({ status: HttpStatus.OK, msg: "Employee registered." });
+        res.json({ status: HttpStatus.OK, msg: "Ad created." });
       }
     })
     .catch(err => {
@@ -163,12 +163,15 @@ router.post("/get_ads_by_type", (req, res) => {
   let query = {};
   if (!errors) {
     let data = req.body;
-    query = { ad_type: data.ad_type };
-    console.log(query);
+    if (data.ad_type) {
+      query = { ad_type: data.ad_type };
+    };
+    if (data.ad_type && data.ad_category) {
+      query = { ad_type: data.ad_type, category: data.ad_category }
+    }
     adService
       .getAdsByType(query)
       .then(response => {
-        console.log(response, "fdasf");
         if (!response) {
           throw {
             reason: "failed"

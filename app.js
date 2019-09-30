@@ -4,7 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const expressValidator = require('express-validator');
-const bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const config = require("./config/database");
@@ -44,18 +44,37 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.json({ limit: "100mb" }));
-app.use(
-  bodyParser.urlencoded({
-    limit: "100mb",
-    parameterLimit: 100000000,
-    extended: true //extended: true
-  })
-);
+app.use(cors());
+// app.use(
+//   bodyParser.urlencoded({
+//     limit: "100mb",
+//     parameterLimit: 100000000,
+//     extended: true //extended: true
+//   })
+// );
+app.use(bodyParser.json({limit: "10mb"}));
+app.use(bodyParser.urlencoded({limit: "10mb", extended: true, parameterLimit:50000}));
 app.use(expressValidator());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/ads", adsRouter);
+
+/**
+ * Configure Cors module to allow specific domains
+ */
+
+function handleCors(app) {
+  let whitelist = ['http://localhost:3000','http://localhost:4200'];
+
+  let corsOptions = {
+      origin: function(origin, callback) {
+          let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+          callback(null, originIsWhitelisted);
+      }
+  };
+
+  app.use(cors(corsOptions));
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

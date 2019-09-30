@@ -4,7 +4,7 @@ var multer = require("multer");
 var AWS = require("aws-sdk");
 
 AWS.config.loadFromPath('s3_credentials.json');
-const BucketName = "the-cdu-project";
+const BucketName = "the-cdu-projects";
 const s3Bucket = new AWS.S3({ params: { Bucket: BucketName } });
 
 const uploadToS3 = (fileName, fileExt, fileData, isCampaign, callback) => {

@@ -31,7 +31,8 @@ const AdSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['active', 'claimed', 'reported']
+        enum: ['active', 'claimed', 'reported'],
+        default: 'active'
     },
     user_type: {
         type: String,
