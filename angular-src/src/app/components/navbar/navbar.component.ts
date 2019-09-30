@@ -91,10 +91,10 @@ export class NavbarComponent implements OnInit {
 
 
   openPostModal() {
-    if (this.isLoggedIn)
-      <any>jQuery("#myModal").modal('show');
-    else
-      this.router.navigate(['login'])
+    // if (this.isLoggedIn)
+    //   <any>jQuery("#myModal").modal('show');
+    // else
+    //   this.router.navigate(['login'])
   }
 
   openReportModal() {
