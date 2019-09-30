@@ -6,17 +6,16 @@
         <div class="col-lg-2 col-sm-3 col-xs-4" *ngFor="let x of topPicks">
             <div class="panel panel-default" style="margin-bottom: 100px">
                 <div class="panel-body">
-                    <span class="ad_type">{{x.ad_type}}</span>
+                    <span class="ad_type" (click)="get_one_ad(x._id)" style="cursor: pointer">{{x.title}}</span>
                     <a>
                         <img (click)="get_one_ad(x._id)"
-                            [src]="x.images.length!==0?x.images[0]:'../assets/images/images.png'"
+                            [src]="x.images.length!==0?x.images[0].url:'../assets/images/images.png'"
                             class="img-thumbnail img-responsive">
                     </a>
                 </div>
-                <div class="panel-footer">
-                    {{x.title | uppercase}}
-                </div>
-                {{x.category}} | <span class="price"> $ {{x.price}}</span>
+                <div class="panel-footer" (click)="get_one_ad(x._id)" style="cursor: pointer">
+                    {{x.ad_type | uppercase}} | {{x.category}}
+                </div> <span class="price" (click)="get_one_ad(x._id)" style="cursor: pointer"> $ {{x.price}}</span>
             </div>
         </div>
         <div class="clear"></div>

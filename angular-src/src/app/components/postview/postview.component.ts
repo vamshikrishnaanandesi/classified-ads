@@ -25,14 +25,14 @@ export class PostviewComponent implements OnInit {
       this.commonService.getOnead(data.id).subscribe(data => {
         this.ad = data.data;
         this.ad.images.forEach(element => {
-          // this.mySlideImages.push(element.url);
-          // this.myCarouselImages.push(element.url);
+          this.mySlideImages.push(element.url);
+          this.myCarouselImages.push(element.url);
         });
       })
     })
 
-    this.mySlideImages = ['https://picsum.photos/id/1/640/480', 'https://picsum.photos/id/2/640/480', 'https://picsum.photos/id/3/640/480'];
-    this.myCarouselImages = ['https://picsum.photos/id/1/640/480', 'https://picsum.photos/id/2/640/480', 'https://picsum.photos/id/3/640/480'];
+    // this.mySlideImages = ['https://picsum.photos/id/1/640/480', 'https://picsum.photos/id/2/640/480', 'https://picsum.photos/id/3/640/480'];
+    // this.myCarouselImages = ['https://picsum.photos/id/1/640/480', 'https://picsum.photos/id/2/640/480', 'https://picsum.photos/id/3/640/480'];
     this.mySlideOptions = { items: 1, dots: true, nav: false };
   }
 

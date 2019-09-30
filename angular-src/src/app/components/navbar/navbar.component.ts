@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   tempImages: any = [];
   numPattern = '[0-9]*';
   urls: any = [];
+  idName: any = null;
   constructor(private router: Router, private toaster: ToastrService, private formBuilder: FormBuilder, private commonservice: CommonService) { }
 
   ngOnInit() {
@@ -62,6 +63,7 @@ export class NavbarComponent implements OnInit {
           this.toaster.success('Ad Posted Successfully', 'Success!');
           this.postForm.reset();
           this.submitted = false;
+          this.tempImages = [];
         } else {
           this.toaster.error('Internal Server Error, Please try again later', 'Error!')
         }
@@ -90,11 +92,13 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  openPostModal() {
-    // if (this.isLoggedIn)
-    //   <any>jQuery("#myModal").modal('show');
-    // else
-    //   this.router.navigate(['login'])
+  openModal() {
+    if (this.isLoggedIn)
+      this.idName = "myModal";
+    else {
+      this.idName = null;
+      this.router.navigate(['login']);
+    }
   }
 
   openReportModal() {

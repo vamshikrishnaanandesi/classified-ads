@@ -31,4 +31,9 @@ export class CommonService {
     let data = { ad_id: id }
     return this.http.post(this._config.urls.api + 'ads/get_one_ad', data);
   }
+
+  getAdType(data: any): Observable<any> {
+    console.log(data);
+    return this.http.post(this._config.urls.api + 'ads/get_ads_by_type', data);
+  }
 }

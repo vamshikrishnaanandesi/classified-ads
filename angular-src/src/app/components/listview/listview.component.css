@@ -38,3 +38,15 @@ ul.breadcrumb {
     color: #01447e;
     text-decoration: underline;
   } 
+
+  p {
+    cursor:  pointer !important;
+  }
+
+  small{
+    cursor:  pointer !important;
+  }
+
+  h4{
+    cursor:  pointer !important;
+  }
