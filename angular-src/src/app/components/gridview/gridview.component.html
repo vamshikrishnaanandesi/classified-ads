@@ -14,7 +14,7 @@
                     </a>
                 </div>
                 <div class="panel-footer" (click)="get_one_ad(x._id)" style="cursor: pointer">
-                    {{x.ad_type | uppercase}} | {{x.category}}
+                    {{x.ad_type | uppercase}} | {{x.category | uppercase}}
                 </div> <span class="price" (click)="get_one_ad(x._id)" style="cursor: pointer"> $ {{x.price}}</span>
             </div>
         </div>
