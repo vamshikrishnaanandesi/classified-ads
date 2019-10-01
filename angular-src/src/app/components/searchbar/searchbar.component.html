@@ -1,29 +1,56 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-form" style="align-content: center">
-            <div class="CommentBox">
-                <input type="text" class="form-control"/>
-                <button class="btn btn-primary"> Search</button>
-            </div>
-        </div>
+<div class="container-fluid">
+    <div class="navbar-form">
+        <input type="text" class="form-control" />
+        <button class="btn btn-primary"> Search</button>
     </div>
-</nav>
-<nav class="navbar navbar-inverse" style="background-color:  white">
-    <div class="container-fluid" style="background-color: white">
-        <ul class="nav navbar-nav">
-            <li [ngClass]="(cat==x.ad_type.value)?'dropdown menu':'dropdown'" *ngFor="let x of listItem">
-                <a class="dropdown-toggle" data-toggle="dropdown">{{x.ad_type.display}}
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li *ngFor="let y of x.ad_category"><a (click)="get_list(x.ad_type.value,y.value)">{{y.display}}</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+</div>
+<section class="navigation">
+    <div class="nav-container">
+        <nav>
+            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+            <ul class="nav-list">
+                <li [ngClass]="(cat == x.ad_type.value) ? 'dropdown-toggle ':''" *ngFor="let x of listItem">
+                    <a class="dropdown-toggle" data-toggle="dropdown">{{x.ad_type.display}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let y of x.ad_category"><a (click)="get_list(x.ad_type.value,y.value)">{{y.display}}</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
     </div>
-</nav>
+</section>
+
 <ul *ngIf="active" class="breadcrumb" style="padding-left:  50px">
-    <li><a (click)="backToPage()">HOME</a></li>
+    <li><a (click)="backToPage()" style="cursor: pointer">HOME</a></li>
     <li>{{cat | uppercase}}</li>
     <li>{{subcat | uppercase}}</li>
 </ul>
+
+<script>
+    (function($) { // Begin jQuery
+        $(function() { // DOM ready
+            // If a link has a dropdown, add sub menu toggle.
+            $('nav ul li a:not(:only-child)').click(function(e) {
+                $(this).siblings('.nav-dropdown').toggle();
+                // Close one dropdown when selecting another
+                $('.nav-dropdown').not($(this).siblings()).hide();
+                e.stopPropagation();
+            });
+            // Clicking away from dropdown will remove the dropdown class
+            $('html').click(function() {
+                $('.nav-dropdown').hide();
+            });
+            // Toggle open and close nav styles on click
+            $('#nav-toggle').click(function() {
+                $('nav ul').slideToggle();
+            });
+            // Hamburger to X toggle
+            $('#nav-toggle').on('click', function() {
+                this.classList.toggle('active');
+            });
+        }); // end DOM ready
+    })(jQuery); // end jQuery
+</script>

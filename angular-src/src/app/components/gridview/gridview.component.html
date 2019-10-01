@@ -1,23 +1,20 @@
 <app-navbar></app-navbar>
 <app-searchbar></app-searchbar>
-<div class="container">
-    <div class="row text-center portfolio">
-        <div class="clear"></div>
-        <div class="col-lg-2 col-sm-3 col-xs-4" *ngFor="let x of topPicks">
-            <div class="panel panel-default" style="margin-bottom: 100px">
-                <div class="panel-body">
-                    <span class="ad_type" (click)="get_one_ad(x._id)" style="cursor: pointer">{{x.title}}</span>
-                    <a>
-                        <img (click)="get_one_ad(x._id)"
-                            [src]="x.images.length!==0?x.images[0].url:'../assets/images/images.png'"
-                            class="img-thumbnail img-responsive">
-                    </a>
+<div class="slide-container">
+    <div class="wrapper">
+        <div class="clash-card barbarian" *ngFor="let x of topPicks">
+            <div class="clash-card__image clash-card__image--barbarian">
+                <!-- <img [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'"/> -->
+                <img src="../assets/images/images.png" />
+            </div>
+            <div class="clash-card__level clash-card__level--barbarian">{{x.ad_type}} | {{x.category}}</div>
+            <div class="clash-card__unit-name">{{x.title}}</div>
+            <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                <div class="one-third">
+                    <div class="stat"> $ {{x.price}}</div>
+                    <div class="stat-value" (click)="get_one_ad(x._id)">Read more >></div>
                 </div>
-                <div class="panel-footer" (click)="get_one_ad(x._id)" style="cursor: pointer">
-                    {{x.ad_type | uppercase}} | {{x.category | uppercase}}
-                </div> <span class="price" (click)="get_one_ad(x._id)" style="cursor: pointer"> $ {{x.price}}</span>
             </div>
         </div>
-        <div class="clear"></div>
     </div>
 </div>

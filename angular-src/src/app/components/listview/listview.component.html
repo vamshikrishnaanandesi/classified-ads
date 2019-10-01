@@ -1,30 +1,23 @@
 <app-navbar></app-navbar>
 <app-searchbar></app-searchbar>
 <div class="container" *ngFor="let x of listView">
-    <div class="row">
-        <div class="col-12 mt-3">
-            <div class="card">
-                <div class="card-horizontal">
-                    <div class="img-square-wrapper">
-                        <img (click)="redirectToPost(x._id)" class=""
-                            [src]="x.images.length!==0?x.images[0].url:'../assets/images/images.png'"
-                            alt="Card image cap">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title" (click)="redirectToPost(x._id)">{{x.title}}</h4>
-                        <p class="card-text" (click)="redirectToPost(x._id)" style="text-align: justify">
-                            {{x.contact_details}}</p>
-                        <p style="color: rgb(18, 52, 116)" (click)="redirectToPost(x._id)">{{x.ad_type | uppercase}} |
-                            {{x.category | uppercase}}
-                        </p>
-                        <div class="card-footer">
-                            <small (click)="redirectToPost(x._id)" class="text-muted"
-                                style="color: #5cb74c;font-weight:bold">$ {{x.price}}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="images">
+        <!-- <img [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'"/> -->
+        <img src="../assets/images/images.png" />
+    </div>
+    <div class="product">
+        <p>{{x.ad_type}} | {{x.category}}</p>
+        <h1>{{x.title}}</h1>
+        <h2>${{x.price}}</h2>
+        <p class="desc">{{x.contact_details}}</p>
+        <div class="buttons">
+            <button class="add" (click)="redirectToPost(x._id)">Read more</button>
+            <button class="like" (click)="redirectToPost(x._id)"><span>>></span></button>
         </div>
     </div>
 </div>
-<div *ngIf="listView !== undefined && listView.length==0" style="text-align: center;color:darkblue">No Posts Available</div>
+<div id="main" *ngIf="listView !== undefined && listView.length==0">
+    <div class="fof">
+        <h1>No Posts Available</h1>
+    </div>
+</div>
