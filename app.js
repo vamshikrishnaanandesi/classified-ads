@@ -63,7 +63,7 @@ app.use("/ads", adsRouter);
  * Configure Cors module to allow specific domains
  */
 
-function handleCors(app) {
+function handleCors(app) { 
   let whitelist = ['http://localhost:3000','http://localhost:4200'];
 
   let corsOptions = {
