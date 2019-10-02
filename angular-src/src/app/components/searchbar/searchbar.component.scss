@@ -1,133 +1,335 @@
-.mr2{
-    margin-top: 7px !important;
-    margin-right: 10px !important;
-}
-.pull-right{
-  cursor: pointer;
-}
-
-.navbar{
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-}
-
-.navbar-brand{
-  margin-left: 15px !important;
-}
-a{
-	text-decoration: none !important
-}
-.navbar-inverse{
-  background-color: #d8d6d9 !important;
-  border-color: #d8d6d9 !important;
-  color: #3c3241 !important;
-}
-
-.navbar-inverse-menu{
-  background-color: #ffffff !important;
-  border-color: #d8d6d9 !important;
-  color: #ffffff !important;
-}
-
-// .navbar-form{
-// margin-left: 210px !important;
-// }
-
-// .form-control{
-//  width: 580px !important;
-//  margin-right:5px !important;
-// }
-
-nav {
-	position: relative;
-	white-space: nowrap;
-	background: white;
-	padding: var(--underline-height) 0;
-	margin: 2em 0;
-	box-shadow: 0 1em 2em rgba(black, .05);
-}
-
-.underline {
-	text-decoration: none;
-	display: block;
-	position: absolute;
-	z-index: 0;
-	bottom: 0;
-	left: 0;
-	height: var(--underline-height);
-	width: 20%;
-	background-color: #337ab7;
-	pointer-events: none;
-	mix-blend-mode: multiply;
-	transition: transform var(--transition-duration) ease-in-out;
-	
-	&:nth-child(1) {
-		background: yellow;
-		transition: calc(var(--transition-duration) * .8);
-	}
-	&:nth-child(2) {
-		background: cyan;
-		transition: calc(var(--transition-duration) * 1.2);
-	}
-	&:nth-child(3) {
-		background: magenta;
-	}
-}
-
-a {
-	display: inline-block;
-	z-index: 10;
-	width: 20%;
-	padding: 1em 0;
-	text-align: center;
-	cursor: pointer;
-}
-
-nav.black {
-	.underline {
-		background-color: #337ab7;
-		border-radius: .25em;
-		height: calc(var(--underline-height) / 2);
-		mix-blend-mode: initial;
-	}
-}
-
-nav.full {
-	font-weight: bold;
-	background: #e2e2e2;
-	color: white;
-	.underline {
-		height: 100%;
-    background-color: rgb(224, 220, 220);
-    color: white !important;
-    border-radius: 3%;
-	}
-}
-
-
-.menu{
-  text-decoration: none !important;
-  background-color:  #080808;
-  color: whitesmoke;
-  font-size: 12px;
-  border-radius: 2%;
-}
-.navbar-nav>li{
-	width: 100px !important;
-	margin-left: 100px !important
-}
-.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
-	width: 110px !important;
-	background-color: none !important;
-}
-.CommentBox {
-    width:800px;
-    height:50px;
-    color:White;
-    margin:0 auto;
-    text-align:center; /* I added this extra proeprty*/
-}
-.CommentBox>input{
-   width: 500px;
-   margin-right: 10px;
-}
+    // Navigation Variables
+    $content-width: 1000px;
+    $breakpoint: 799px;
+    $nav-height: 70px;
+    $nav-background: #262626;
+    $nav-font-color: #ffffff;
+    $link-hover-color: #BD7C2F;
+    // Outer navigation wrapper
+    .navigation {
+        height: $nav-height;
+        background: $nav-background;
+    }
+    
+    // Logo and branding
+    .brand {
+        position: absolute;
+        padding-left: 20px;
+        float: left;
+        line-height: $nav-height;
+        text-transform: uppercase;
+        font-size: 1.4em;
+        a,
+        a:visited {
+            color: $nav-font-color;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+    
+    // Container with no padding for navbar
+    .nav-container {
+        max-width: $content-width;
+        margin: 0 auto;
+    }
+    
+    // Navigation 
+    nav {
+        float: right;
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                float: left;
+                position: relative;
+                a,
+                a:visited {
+                    display: block;
+                    padding: 0 20px;
+                    line-height: $nav-height;
+                    background: $nav-background;
+                    color: $nav-font-color;
+                    text-decoration: none;
+                    &:hover {
+                        background: $link-hover-color;
+                        color: $nav-font-color;
+                        cursor: pointer;
+                    }
+                    &:not(:only-child):after {
+                        padding-left: 4px;
+                        content: ' ▾';
+                    }
+                } // Dropdown list
+                ul li {
+                    min-width: 190px;
+                    a {
+                        padding: 15px;
+                        line-height: 20px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Dropdown list binds to JS toggle event
+    .nav-dropdown {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    }
+    /* Mobile navigation */
+    
+    // Binds to JS Toggle
+    .nav-mobile {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: $nav-background;
+        height: $nav-height;
+        width: $nav-height;
+    }
+    
+    @media only screen and (max-width: 798px) {
+        // Hamburger nav visible on mobile only
+        .nav-mobile {
+            display: block;
+        }
+        nav {
+            width: 100%;
+            padding: $nav-height 0 15px;
+            ul {
+                display: none;
+                li {
+                    float: none;
+                    a {
+                        padding: 15px;
+                        line-height: 20px;
+                    }
+                    ul li a {
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+        .nav-dropdown {
+            position: static;
+        }
+    }
+    
+    @media screen and (min-width: $breakpoint) {
+        .nav-list {
+            display: block !important;
+            .menu {
+                background-color: #BD7C2F !important;
+                color: #BD7C2F
+            }
+        }
+    }
+    
+    #nav-toggle {
+        position: absolute;
+        left: 18px;
+        top: 22px;
+        cursor: pointer;
+        padding: 10px 35px 16px 0px;
+        span,
+        span:before,
+        span:after {
+            cursor: pointer;
+            border-radius: 1px;
+            height: 5px;
+            width: 35px;
+            background: $nav-font-color;
+            position: absolute;
+            display: block;
+            content: '';
+            transition: all 300ms ease-in-out;
+        }
+        span:before {
+            top: -10px;
+        }
+        span:after {
+            bottom: -10px;
+        }
+        &.active span {
+            background-color: transparent;
+            &:before,
+            &:after {
+                top: 0;
+            }
+            &:before {
+                transform: rotate(45deg);
+            }
+            &:after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    
+    // Page content 
+    article {
+        max-width: $content-width;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    
+    .form-control {
+        min-width: 500px !important;
+        margin-right: 0.5% !important;
+        margin-left: 20% !important;
+    }
+    
+    // SETTINGS - VARIABLES
+    $color-link: #007c89;
+    $color-separator: #767676;
+    $size-icon: 16px;
+    $space-separator: 8px;
+    // TOOLS - MIXINS
+    @mixin text-underline($color: currentColor) {
+        background-image: linear-gradient($color, $color);
+        background-size: auto 1px;
+        background-repeat: repeat-x;
+        background-position: 0 calc(50% + 1ex);
+    }
+    
+    // TOOLS - FUNCTIONS
+    /// Returns SVG-Image embedded in a Data-URI.
+    /// @parameter {color} Hexadecimal value for stroke color
+    /// @returns {string} Data-URI
+    /// @example background: url(icon-svg-uri('arrow-left', #000000)) center / 16px no-repeat;
+    /// @link https://feathericons.com/ Icon design by Cole Bemis
+    @function icon-svg-uri($icon-name, $color) {
+        @if (type_of($color)=='color') and (str-index(inspect($color), '#')==1) {
+            $encoded-color: '%23' + str-slice(inspect($color), 2);
+            // MS Edge is turning single quotes to double quotes. (`url('data:` -> `url("data:`)
+            $icon-set: ( arrow-left: "%3Cline x1='19' y1='12' x2='5' y2='12'%3E%3C/line%3E%3Cpolyline points='12 19 5 12 12 5'%3E%3C/polyline%3E", chevron-right: "%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E");
+            @if map-has-key($icon-set, $icon-name) {
+                @return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#{$encoded-color}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round%5C'%3E#{map-get($icon-set, $icon-name)}%3C/svg%3E";
+            }
+            @else {
+                @error 'Invalid icon name: `#{$icon-name}`'
+            }
+        }
+        @else {
+            @error 'Invalid HEX value: `#{$color}`'
+        }
+    }
+    
+    // GENERIC - RESET
+    a:link {
+        text-decoration: none;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    ol {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    // GENERIC - NORMALIZE
+    a:focus {
+        outline: thin dotted;
+    }
+    
+    // GENERIC - FONTS
+    @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+    // ELEMENTS - A
+    a:link {
+        touch-action: manipulation;
+    }
+    
+    a:active,
+    a:hover {
+        outline: 0;
+    }
+    
+    a:visited:not([rel='external']) {
+        color: currentColor;
+    }
+    
+    // ELEMENTS - BODY
+    body {
+        margin: 32px;
+        font: 16px/32px 'Work Sans', sans-serif;
+    }
+    
+    // OBJECTS - INLINE-SVG-ICON
+    .o-inline-svg-icon {
+        stroke: currentColor;
+        &--baseline {
+            position: relative;
+            top: .125em;
+            width: 1em;
+            height: 1em;
+        }
+    }
+    
+    // COMPONENTS - NAVIGATION-BREADCRUMBS
+    .c-navigation-breadcrumbs {
+        &__directory {
+            display: flex;
+        }
+        &__link:link {
+            color: $color-link;
+            &:hover {
+                @include text-underline();
+            }
+        }
+        // Shorten the breadcrumb trail to include only the next higher level. (Prevent wrap to multiple lines on small screen sizes)
+        @media (max-width: 500px) {
+            &__item {
+                &:not(:nth-last-child(2)) {
+                    display: none;
+                }
+            }
+            &__link {
+                &:before {
+                    display: inline-block;
+                    // Invisible space character (sets auto-height for element)
+                    content: '\200b';
+                    // User goes "up one level" instead of "navigating back" to the last view or page.
+                    background: url(icon-svg-uri('arrow-left', $color-link)) center / $size-icon $size-icon no-repeat;
+                    width: $size-icon;
+                }
+            }
+        }
+        @media (min-width: 501px) {
+            &__item {
+                &:nth-last-child(n+2):after {
+                    display: inline-block;
+                    content: '\200b';
+                    // "Greater-than sign" indicates higher-level page.
+                    background: url(icon-svg-uri('chevron-right', $color-separator)) center / $size-icon $size-icon no-repeat;
+                    width: $size-icon;
+                    margin: 0 $space-separator;
+                }
+            }
+            &__link {
+                display: block;
+                float: left;
+            }
+        }
+    }
+    
+    // UTILITIES - VISUALLY-HIDDEN
+    .u-visually-hidden {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }

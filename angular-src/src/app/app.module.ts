@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { OwlModule } from 'ngx-owl-carousel';
-// import * as AnythingThatIsNotDollarSignOrSymbolOrjQuery from "jquery"
+import { CardsModule, IconsModule } from 'angular-bootstrap-md'
 
 @NgModule({
   declarations: [
@@ -39,7 +39,10 @@ import { OwlModule } from 'ngx-owl-carousel';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    OwlModule
+    OwlModule,
+    CardsModule.forRoot(),
+    IconsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

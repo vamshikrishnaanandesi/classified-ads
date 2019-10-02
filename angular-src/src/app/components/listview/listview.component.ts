@@ -6,7 +6,7 @@ import { CommonService } from 'src/app/common.service';
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
-  styleUrls: ['./listview.component.css'],
+  styleUrls: ['./listview.component.scss'],
   providers: [NavbarComponent]
 })
 export class ListviewComponent implements OnInit {

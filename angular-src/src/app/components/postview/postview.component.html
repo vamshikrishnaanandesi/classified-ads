@@ -1,6 +1,53 @@
 <app-navbar></app-navbar>
-
 <div class="container">
+    <section class="grid-col-12" style="margin-top: 50px">
+        <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
+            <div class="item" *ngFor="let image of mySlideImages;let i = index">
+                <div>
+                    <img src={{image}} />
+                </div>
+            </div>
+        </owl-carousel>
+    </section>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card card-price">
+                <div class="card-body">
+                    <div class="lead">{{ad.title}}</div>
+                    <ul class="details">
+                        <li>{{ad.contact_details}}</li>
+                    </ul>
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Ad Type</td>
+                            <td class="price">{{ad.ad_type}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ad Category</td>
+                            <td class="price">{{ad.category}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td class="price">$ {{ad.price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td class="price">{{ad.status}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /container -->
+</div>
+<!-- <div class="container">
     <section class="grid-col-12" style="margin-top: 50px">
         <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
             <div class="item" *ngFor="let image of mySlideImages;let i = index">
@@ -12,7 +59,6 @@
     </section>
 
     <section class="grid-col-12">
-        <h3 class="h-underline-s">Description</h3>
         <h5>{{ad.title | uppercase}}</h5>
         <div class="span-12">
             <ol class="name-value" style="width: 100%;">
@@ -40,4 +86,4 @@
             </ol>
         </div>
     </section>
-</div>
+</div> -->

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-gridview',
   templateUrl: './gridview.component.html',
-  styleUrls: ['./gridview.component.css'],
+  styleUrls: ['./gridview.component.scss'],
   providers: [NavbarComponent]
 })
 export class GridviewComponent implements OnInit {
