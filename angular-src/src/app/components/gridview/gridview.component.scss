@@ -34,7 +34,7 @@
         
         .clash-card {
             background: white;
-            width: 300px;
+            width: 200px;
             display: inline-block;
             margin-left: 40px;
             border-radius: $border-radius-size + 5;
@@ -46,7 +46,7 @@
         
         .clash-card__image {
             position: relative;
-            height: 230px;
+            height: 150px;
             border-top-left-radius: $border-radius-size;
             border-top-right-radius: $border-radius-size;
         }
@@ -54,11 +54,7 @@
         .clash-card__image--barbarian {
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian-bg.jpg');
             img {
-                width: 300px;
-                position: absolute;
-                top: -10px;
-                left: -10px;
-                border-radius: 5%;
+                width: 200px;
             }
         }
         
