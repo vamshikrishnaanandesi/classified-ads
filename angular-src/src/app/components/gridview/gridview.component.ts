@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonService } from 'src/app/common.service';
 import { Subscriber } from 'rxjs';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-gridview',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class GridviewComponent implements OnInit {
   topPicks: any = [];
-  constructor(private commonService: CommonService, private router: Router) { }
+  constructor(private location: Location, private commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
@@ -25,4 +26,7 @@ export class GridviewComponent implements OnInit {
     this.router.navigate(['post', { id: id }])
   }
 
+  back() {
+    this.location.back();
+  }
 }

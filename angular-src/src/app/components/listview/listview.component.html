@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <app-searchbar></app-searchbar>
+<div class="back" (click)="back()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
 <div class="container" *ngFor="let x of listView">
     <div class="images">
         <!-- <img [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'"/> -->

@@ -4,7 +4,7 @@ export const config = {
     },
     menuList: [
         {
-            ad_type: { value: 'rent', display: 'Rent' },
+            ad_type: { value: 'rent', display: 'Accommodations ' },
             ad_category: []
         }, {
             ad_type: { value: 'lost-found', display: 'Lost-Found' },
@@ -12,16 +12,15 @@ export const config = {
                 { value: 'electronics', display: 'Electronics' },
                 { value: 'vehicles', display: 'Vehicles' },
                 { value: 'books', display: 'Books' },
-                { value: 'misc', display: 'Misc.' }
+                { value: 'keys', display: 'Keys' }
             ]
         }, {
             ad_type: { value: 'buy', display: 'Buy' },
             ad_category: [
                 { value: 'electronics', display: 'Electronics' },
-                { value: 'jewellery', display: 'Jewellery' },
+                { value: 'households ', display: 'House Holds ' },
                 { value: 'vehicles', display: 'Vehicles' },
-                { value: 'books', display: 'Books' },
-                { value: 'misc', display: 'Misc.' }
+                { value: 'books', display: 'Books' }
             ]
         }, {
             ad_type: { value: 'events', display: 'Events' },

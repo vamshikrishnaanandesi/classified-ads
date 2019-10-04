@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonService } from 'src/app/common.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-listview',
@@ -11,7 +12,7 @@ import { CommonService } from 'src/app/common.service';
 })
 export class ListviewComponent implements OnInit {
   listView: any;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
+  constructor(private location: Location,private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(data => {
@@ -24,5 +25,9 @@ export class ListviewComponent implements OnInit {
 
   redirectToPost(id: any) {
     this.router.navigate(['post', { id: id }])
+  }
+
+  back() {
+    this.location.back();
   }
 }
