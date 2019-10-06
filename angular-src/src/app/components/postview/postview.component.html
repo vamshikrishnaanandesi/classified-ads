@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
 <div class="container">
     <section class="grid-col-12" style="margin-top: 50px">
         <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
@@ -43,47 +44,4 @@
             </div>
         </div>
     </div>
-
-
-    <!-- /container -->
 </div>
-<!-- <div class="container">
-    <section class="grid-col-12" style="margin-top: 50px">
-        <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
-            <div class="item" *ngFor="let image of mySlideImages;let i = index">
-                <div>
-                    <img src={{image}} />
-                </div>
-            </div>
-        </owl-carousel>
-    </section>
-
-    <section class="grid-col-12">
-        <h5>{{ad.title | uppercase}}</h5>
-        <div class="span-12">
-            <ol class="name-value" style="width: 100%;">
-                <li>
-                    <label for="about">Ad Type</label>
-                    <span id="about">{{ad.ad_type}}</span>
-                </li>
-                <li>
-                    <label for="about">Category</label>
-                    <span id="Span1">{{ad.category}}</span>
-                </li>
-                <li>
-                    <label for="about">Price</label>
-                    <span id="Span2">$ {{ad.price}}</span>
-                </li>
-                <li>
-                    <label for="about">Status</label>
-                    <span id="Span2">{{ad.status}}</span>
-                </li>
-                <hr>
-                <li>
-                    <label for="about">Contact Details</label>
-                    <span id="Span2" style="text-align:justify">{{ad.contact_details}}</span>
-                </li>
-            </ol>
-        </div>
-    </section>
-</div> -->

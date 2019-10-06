@@ -23,7 +23,7 @@ body {
     position: relative;
     margin: auto;
     overflow: hidden;
-    width: 520px;
+    width: 400px;
     background: $white;
     border-radius: 10px;
     margin-top: 5%;
@@ -47,7 +47,7 @@ h2 {
 }
 
 img {
-    width: 290px;
+    width: 200px;
     margin-top: 5%;
     margin-bottom: 5%;
 }
@@ -122,11 +122,13 @@ button {
 }
 
 .add {
-    width: 67%;
+    width: 80px;
+    font-size: 8px
 }
 
 .like {
-    width: 22%;
+    width: 25px;
+    font-size: 8px;
 }
 
 .sizes {
@@ -208,4 +210,14 @@ footer {
     to {
         box-shadow: inset -3px 0px 0px transparent;
     }
+}
+
+.back{
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.back:hover{
+    color: blue;
+    font-weight: 400;
 }

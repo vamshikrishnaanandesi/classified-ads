@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { CommonService } from 'src/app/common.service';
-import * as $ from "jquery";
-// import * as bootstrap from "bootstrap";
+declare var $: any;
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -64,6 +64,9 @@ export class NavbarComponent implements OnInit {
           this.postForm.reset();
           this.submitted = false;
           this.tempImages = [];
+          $.noConflict();
+          $("#myModal").modal("hide");
+          this.router.navigate(['gridview']);
         } else {
           this.toaster.error('Internal Server Error, Please try again later', 'Error!')
         }
@@ -89,16 +92,6 @@ export class NavbarComponent implements OnInit {
     var binaryString = readerEvt.target.result;
     var base64textString = btoa(binaryString);
     this.tempImages.push({ 'image_data': base64textString })
-  }
-
-
-  openModal() {
-    if (this.isLoggedIn)
-      this.idName = "myModal";
-    else {
-      this.idName = null;
-      this.router.navigate(['login']);
-    }
   }
 
   openReportModal() {

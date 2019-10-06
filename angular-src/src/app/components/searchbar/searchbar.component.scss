@@ -1,7 +1,7 @@
     // Navigation Variables
     $content-width: 1000px;
     $breakpoint: 799px;
-    $nav-height: 50px;
+    $nav-height: 40px;
     $nav-background: #262626;
     $nav-font-color: #ffffff;
     $link-hover-color: #BD7C2F;
@@ -35,7 +35,7 @@
     
     // Navigation 
     nav {
-        float: right;
+        float: none;
         ul {
             list-style: none;
             margin: 0;
@@ -43,6 +43,7 @@
             li {
                 float: left;
                 position: relative;
+                width: 20%;
                 a,
                 a:visited {
                     display: block;
@@ -51,6 +52,7 @@
                     background: $nav-background;
                     color: $nav-font-color;
                     text-decoration: none;
+                    text-align: center;
                     &:hover {
                         background: $link-hover-color;
                         color: $nav-font-color;
@@ -176,11 +178,12 @@
         margin: 0 auto;
         padding: 10px;
     }
-    
+    .navbar-form{
+        text-align: center !important;
+    }
     .form-control {
-        min-width: 500px !important;
+        min-width: 49.50% !important;
         margin-right: 0.5% !important;
-        margin-left: 20% !important;
     }
     
     // SETTINGS - VARIABLES
@@ -337,3 +340,4 @@
     .highlight{
         background-color: #BD7C2F !important;
     }
+

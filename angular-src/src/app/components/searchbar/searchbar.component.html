@@ -1,8 +1,6 @@
-<div class="container-fluid">
-    <div class="navbar-form">
-        <input type="text" class="form-control" />
-        <button class="btn btn-primary"> Search</button>
-    </div>
+<div class="navbar-form">
+    <input type="text" class="form-control" />
+    <button class="btn btn-primary"> Search</button>
 </div>
 <section class="navigation">
     <div class="nav-container">
@@ -10,15 +8,15 @@
             <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
             <ul class="nav-list">
                 <li *ngFor="let x of listItem">
-                    <a data-toggle="dropdown" [ngClass]="(cat === x.ad_type.value) ? 'highlight' : ''">{{x.ad_type.display}}
+                    <a data-toggle="dropdown" [ngClass]="(cat === x.ad_type.value) ? 'highlight' : ''"
+                        (click)="(x.ad_category.length == 0) ? get_list(x.ad_type.value,null) : false">{{x.ad_type.display}}
                     </a>
-                    <ul class="dropdown-menu">
-                        <li *ngFor="let y of x.ad_category"><a
-                                (click)="get_list(x.ad_type.value,y.value)">{{y.display}}</a>
+                    <ul class="dropdown-menu" *ngIf="x.ad_category.length !== 0">
+                        <li *ngFor="let y of x.ad_category">
+                            <a (click)="get_list(x.ad_type.value,y.value)">{{y.display}}</a>
                         </li>
                     </ul>
                 </li>
-
             </ul>
         </nav>
     </div>
