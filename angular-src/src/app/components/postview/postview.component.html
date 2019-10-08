@@ -1,8 +1,11 @@
 <app-navbar></app-navbar>
 <div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
 <div class="container">
-    <section class="grid-col-12" style="margin-top: 50px">
-        <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
+    <section *ngIf="showCar" class="grid-col-12" style="margin-top: 50px">
+        <owl-carousel 
+        [options]="mySlideOptions" 
+        [items]="images"
+        [carouselClasses]="['owl-theme', 'sliding']">
             <div class="item" *ngFor="let image of mySlideImages;let i = index">
                 <div>
                     <img src={{image}} />

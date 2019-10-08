@@ -38,10 +38,12 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       this.commonService.login(this.loginForm.value).subscribe(value => {
+        console.log(value.user)
         if (value.success) {
           this.toaster.success('Login Successful', 'Success!');
           sessionStorage.setItem('login', 'true');
           sessionStorage.setItem('userID', value.user.id);
+          sessionStorage.setItem('role', value.user.role);
           this.router.navigate(['gridview']);
         } else {
           this.toaster.error('Invalid Crediantials', 'Error!')

@@ -9,8 +9,8 @@ import { config } from '../../../../constant';
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
-  cat: any = '';
-  subcat: any = '';
+  cat: any = null;
+  subcat: any = null;
   active: boolean = false;
   first: boolean = true;
   listItem: any = config.menuList;
@@ -29,7 +29,7 @@ export class SearchbarComponent implements OnInit {
     this.router.navigate(['list', { 'ad_type': menu, 'ad_category': submenu }]);
   }
 
-  backToPage() {
-    this._location.back();
+  backToHome() {
+    this.router.navigate(['gridview']);
   }
 }

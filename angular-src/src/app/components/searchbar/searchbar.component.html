@@ -23,9 +23,9 @@
 </section>
 
 <ul *ngIf="active" class="breadcrumb" style="padding-left:  50px">
-    <li><a (click)="backToPage()" style="cursor: pointer">HOME</a></li>
+    <li><a (click)="backToHome()" style="cursor: pointer">HOME</a></li>
     <li>{{cat | uppercase}}</li>
-    <li>{{subcat | uppercase}}</li>
+    <li *ngIf="subcat !== 'null' && subcat !== '' && subcat !== undefined">{{subcat | uppercase}}</li>
 </ul>
 
 <script>
