@@ -12,6 +12,7 @@ const cors = require("cors");
 
 require("./models/user");
 require("./models/ads.model");
+require("./models/reported_ads.model");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -40,20 +41,12 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
-// app.use(
-//   bodyParser.urlencoded({
-//     limit: "100mb",
-//     parameterLimit: 100000000,
-//     extended: true //extended: true
-//   })
-// );
-app.use(bodyParser.json({limit: "10mb"}));
-app.use(bodyParser.urlencoded({limit: "10mb", extended: true, parameterLimit:50000}));
+
+app.use(bodyParser.json({limit: "100mb", extended: true}));
+app.use(bodyParser.urlencoded({limit: "100mb", extended: true, parameterLimit:50000}));
 app.use(expressValidator());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

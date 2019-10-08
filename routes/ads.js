@@ -35,7 +35,6 @@ function upload_images(images_data) {
 } // Upload multiple images to s3 bucket - end
 
 router.post("/post_ad", (req, res) => {
-  console.log("ok",req.body)
   let data = req.body;
   if (data.images) {
     data.images = upload_images(data.images);
@@ -208,6 +207,55 @@ router.post("/get_ads_by_type", (req, res) => {
             .json({ success: false, msg: "Internal server error", error: err });
         }
       });
+  } else {
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ success: false, msg: "Required params missing", errors: errors });
+  }
+}); // find one product - endquery
+
+// report an ad -start
+router.post("/report_ad", (req, res) => {
+  req.assert("ad_id", "Ad type should not be empty").notEmpty();
+  req.assert("description", "Ad type should not be empty").notEmpty();
+  var errors = req.validationErrors();
+  if (!errors) {
+    let data = req.body;
+    const query = {
+      ad_id: data.ad_id,
+      description: data.description,
+      reported_by: data.reported_by
+    }
+    adService.reportAd(query)
+      .then(response => {
+        console.log(response);
+        if (!response) {
+          throw {
+            reason: "failed"
+          };
+        }
+        else {
+          adService.updateAd(response.ad_id)
+            .then(response => {
+              res.json({ status: HttpStatus.OK, msg: "Ad reported." })
+            })
+            .catch(err => {
+              if (err.reason == "failed") {
+                res
+                  .status(HttpStatus.UNAUTHORIZED)
+                  .json({ success: false, msg: "Id not Found" });
+              } else if (err.name === "MongoError" && err.code === 11000) {
+                return res
+                  .status(HttpStatus.METHOD_NOT_ALLOWED)
+                  .json({ success: false, msg: "duplicate error", error: err });
+              } else {
+                return res
+                  .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                  .json({ success: false, msg: "Internal server error", error: err });
+              }
+            });
+        }
+      })
   } else {
     return res
       .status(HttpStatus.UNAUTHORIZED)
