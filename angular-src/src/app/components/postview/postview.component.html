@@ -2,10 +2,7 @@
 <div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
 <div class="container">
     <section *ngIf="showCar" class="grid-col-12" style="margin-top: 50px">
-        <owl-carousel 
-        [options]="mySlideOptions" 
-        [items]="images"
-        [carouselClasses]="['owl-theme', 'sliding']">
+        <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
             <div class="item" *ngFor="let image of mySlideImages;let i = index">
                 <div>
                     <img src={{image}} />
@@ -41,6 +38,10 @@
                         <tr>
                             <td>Status</td>
                             <td class="price">{{ad.status}}</td>
+                        </tr>
+                        <tr>
+                            <td>Posted On</td>
+                            <td class="price">{{ad.createdAt | date :'dd-MMMM-yy'}}</td>
                         </tr>
                     </table>
                 </div>
