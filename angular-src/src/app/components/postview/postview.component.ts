@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/common.service';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-postview',
@@ -14,23 +13,25 @@ export class PostviewComponent implements OnInit {
   imageUrls: any = [];
   ad: any = {};
   imageObject: any = [];
-  mySlideOptions: { items: 1, dots: true, nav: false };
+  myCarouselOptions: { items: number; dots: boolean; nav: boolean; };
+  mySlideOptions: { items: number; dots: boolean; nav: boolean; };
   mySlideImages: any = [];
   myCarouselImages: any = [];
+  showCar = false
   constructor(private _location: Location, private router: Router, private activedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
-    var tempImg: any = [];
+    this.showCar = false
     sessionStorage.setItem('post', 'true');
     this.activedRoute.params.subscribe(data => {
-      this.commonService.getOnead(data.id).subscribe(async data => {
+      this.commonService.getOnead(data.id).subscribe(data => {
         this.ad = data.data;
-        tempImg = await this.ad.images.map((element: any) =>  (element.url) );
-        this.mySlideImages = await tempImg.map((element: any) =>  (element) );
-      });
-      // this.mySlideImages = [1,2,3].map((i)=> `https://picsum.photos/640/480?image=${i}`);
-      this.mySlideOptions = { items: 1, dots: true, nav: false };
+        console.log(this.ad.images)
+        this.mySlideImages =  this.ad.images.map((i:any)=>i.url)
+          this.showCar = true
+      })
     });
+    this.mySlideOptions = { items: 1, dots: true, nav: false };
   }
 
   backToPage() {

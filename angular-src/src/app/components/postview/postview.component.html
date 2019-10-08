@@ -1,14 +1,11 @@
 <app-navbar></app-navbar>
-<!-- <div class="back-button" (click)="backToPage()">
-    <div class="arrow-wrap">
-        <span class="arrow-part-1"></span>
-        <span class="arrow-part-2"></span>
-        <span class="arrow-part-3"></span>
-    </div>
-</div> -->
+<div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
 <div class="container">
-    <section class="grid-col-12" style="margin-top: 50px">
-        <owl-carousel [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
+    <section *ngIf="showCar" class="grid-col-12" style="margin-top: 50px">
+        <owl-carousel 
+        [options]="mySlideOptions" 
+        [items]="images"
+        [carouselClasses]="['owl-theme', 'sliding']">
             <div class="item" *ngFor="let image of mySlideImages;let i = index">
                 <div>
                     <img src={{image}} />
@@ -44,10 +41,6 @@
                         <tr>
                             <td>Status</td>
                             <td class="price">{{ad.status}}</td>
-                        </tr>
-                        <tr>
-                            <td>Posted On</td>
-                            <td class="price">{{ad.createdAt | date : 'dd-MMMM-yy'}}</td>
                         </tr>
                     </table>
                 </div>
