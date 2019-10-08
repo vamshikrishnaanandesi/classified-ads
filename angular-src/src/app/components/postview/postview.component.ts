@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/common.service';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-postview',
@@ -13,27 +14,23 @@ export class PostviewComponent implements OnInit {
   imageUrls: any = [];
   ad: any = {};
   imageObject: any = [];
-  myCarouselOptions: { items: number; dots: boolean; nav: boolean; };
-  mySlideOptions: { items: number; dots: boolean; nav: boolean; };
+  mySlideOptions: { items: 1, dots: true, nav: false };
   mySlideImages: any = [];
   myCarouselImages: any = [];
   constructor(private _location: Location, private router: Router, private activedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
+    var tempImg: any = [];
     sessionStorage.setItem('post', 'true');
     this.activedRoute.params.subscribe(data => {
-      this.commonService.getOnead(data.id).subscribe(data => {
+      this.commonService.getOnead(data.id).subscribe(async data => {
         this.ad = data.data;
-        console.log(this.ad.images)
-        this.ad.images.forEach((element: any) => {
-          // this.mySlideImages.push('https://picsum.photos/id/1/640/480');
-          // this.myCarouselImages.push('https://picsum.photos/id/1/640/480');
-        });
-      })
-      this.mySlideImages.push('https://picsum.photos/id/1/640/480','https://picsum.photos/id/1/640/480');
-      this.myCarouselImages.push('https://picsum.photos/id/1/640/480','https://picsum.photos/id/1/640/480')
+        tempImg = await this.ad.images.map((element: any) =>  (element.url) );
+        this.mySlideImages = await tempImg.map((element: any) =>  (element) );
+      });
+      // this.mySlideImages = [1,2,3].map((i)=> `https://picsum.photos/640/480?image=${i}`);
+      this.mySlideOptions = { items: 1, dots: true, nav: false };
     });
-    this.mySlideOptions = { items: 1, dots: true, nav: false };
   }
 
   backToPage() {

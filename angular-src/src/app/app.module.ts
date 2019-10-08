@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { OwlModule } from 'ngx-owl-carousel';
-import { CardsModule, IconsModule } from 'angular-bootstrap-md'
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -40,8 +40,9 @@ import { CardsModule, IconsModule } from 'angular-bootstrap-md'
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     OwlModule,
-    CardsModule.forRoot(),
-    IconsModule
+    MDBBootstrapModule.forRoot()
+    
+    
     
   ],
   providers: [],

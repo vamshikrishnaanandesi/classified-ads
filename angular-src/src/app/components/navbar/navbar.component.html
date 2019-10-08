@@ -1,29 +1,28 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" [routerLink]="isLoggedIn?['/gridview']:['']">CDU BULLETIN BOARD</a> </div> <a
-                class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
-                Logout</a>
-            <a class="nav-brand pull-right" (click)="login()" *ngIf="!isLoggedIn">Login/Register</a>
-            <button class="btn btn-danger pull-right mr2" *ngIf="postView" (click)="openReportModal()">Report this
-                Ad</button>
-            <button class="btn btn-success pull-right mr2" data-toggle="modal" data-target="#myModal">Post an Ad</button>
-        </div>
+            <a class="navbar-brand" [routerLink]="isLoggedIn?['/gridview']:['']">CDU BULLETIN BOARD</a> </div>
+        <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
+            Logout</a>
+        <button class="btn btn-danger pull-right mr2" *ngIf="postView" data-toggle="modal"
+            data-target="#myModal" (click)="reportFun()">Report
+            this
+            Ad</button>
+        <button class="btn btn-success pull-right mr2" data-toggle="modal" data-target="#myModal" (click)="adFun()">Post an Ad</button>
+    </div>
 </nav>
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Post An Ad</h4>
+                <h4 class="modal-title">{{title}}</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <!-- Modal body -->
             <div class="modal-body">
-                <form [formGroup]="postForm">
+                <form *ngIf="postAdForm" [formGroup]="postForm">
                     <div class="row">
                         <div class="col-12">
                             <div class="col-md-6">
@@ -50,7 +49,7 @@
                                     <div *ngIf="f.title.errors.required">Title is required.</div>
                                     <div *ngIf="f.title.errors.minlength">Title must be at least 3
                                         characters..</div>
-                                    <div *ngIf="f.title.errors.maxlength">Title must not be exceed 30
+                                    <div *ngIf="f.title.errors.maxlength">Title must not be exceed 50
                                         characters.</div>
                                 </div>
                             </div>
@@ -91,33 +90,23 @@
                         <div class="clearfix"></div>
 
                         <div class="col-12">
-                            <div class="col-md-6">
-                                <label>Status *</label>
-                                <select formControlName="status" type="text" name="Status" class="form-control"
-                                    placeholder="status" value=""
-                                    [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-                                    <option value="">Select</option>
-                                    <option value="active">Active</option>
-                                    <option value="claimed">Claimed</option>
-                                    <option value="reported">Reported</option>
-                                </select>
-                                <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-                                    <div *ngIf="f.status.errors.required">Status is required.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+
+                            <div class="col-md-12">
                                 <label>Contact Details *</label>
                                 <textarea type="text" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.contact_details.errors }"
                                     formControlName="contact_details">
                                     </textarea>
                                 <div *ngIf="submitted && f.contact_details.errors" class="invalid-feedback">
-                                    <div *ngIf="f.contact_details.errors.minlength">Contact Details must be at least 3
+                                    <div *ngIf="f.contact_details.errors.minlength">Contact Details must be at least
+                                        3
                                         characters.</div>
-                                    <div *ngIf="f.contact_details.errors.maxlength">Contact Details must not be exceed
+                                    <div *ngIf="f.contact_details.errors.maxlength">Contact Details must not be
+                                        exceed
                                         100
                                         characters.</div>
-                                    <div *ngIf="f.contact_details.errors.required">Contact Details is required.</div>
+                                    <div *ngIf="f.contact_details.errors.required">Contact Details is required.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -133,10 +122,33 @@
                         <button type="button" class="btn btn-success" (click)="postAd()">Post</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
-
                 </form>
-
-
+                <form *ngIf="!postAdForm" [formGroup]="reportForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Description *</label>
+                            <textarea type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted1 && f1.description.errors }"
+                                formControlName="description">
+                                                </textarea>
+                            <div *ngIf="submitted1 && f1.description.errors" class="invalid-feedback">
+                                <div *ngIf="f1.description.errors.minlength">Description must be at least
+                                    3
+                                    characters.</div>
+                                <div *ngIf="f1.description.errors.maxlength">Description must not be
+                                    exceed
+                                    100
+                                    characters.</div>
+                                <div *ngIf="f1.description.errors.required">Description is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="reportAd()">Report</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
