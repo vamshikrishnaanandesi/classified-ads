@@ -101,7 +101,8 @@ router.post('/authenticate', (req, res, next) => {
               username: user.username,
               email: user.email,
               age: user.age,
-              gender: user.gender
+              gender: user.gender,
+              role: user.role
             }
           })
         } else {
