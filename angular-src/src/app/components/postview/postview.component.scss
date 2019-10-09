@@ -199,6 +199,9 @@ ol.name-value li span {
     }
 }
 
+img{
+    margin-bottom: 10px !important;
+}
 
 /* -- default theme ------ */
 
@@ -303,17 +306,18 @@ ol.name-value li span {
 
 .card-price .price small {
     font-size: 0.4em;
+    font-weight: bold;
     color: #66a5da;
 }
 
 .card-price .details {
     list-style: none;
-    margin-bottom: 24px;
+    margin-bottom: 240px;
     padding: 0 18px;
 }
 
 .card-price .details li {
-    text-align: center;
+    float: left;
     margin-bottom: 8px;
 }
 
@@ -323,6 +327,7 @@ ol.name-value li span {
 
 .card-price table .price {
     font-size: 1.2em;
+    font-weight: bold;
     text-align: left;
 }
 
@@ -343,8 +348,6 @@ td {
 
 .table {
     width: 70% !important;
-    margin-left: 15% !important;
-    margin-right: 15% !important;
 }
 
 
@@ -377,6 +380,10 @@ body{
         background:#fff;
       }
     }
+  }
+
+  .price{
+      font-weight: bold !important;
   }
   .arrow-wrap{
     display:block;

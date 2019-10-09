@@ -9,7 +9,7 @@
             <ul class="nav-list">
                 <li *ngFor="let x of listItem">
                     <a data-toggle="dropdown" [ngClass]="(cat === x.ad_type.value) ? 'highlight' : ''"
-                        (click)="(x.ad_category.length == 0) ? get_list(x.ad_type.value,null) : false">{{x.ad_type.display}}
+                        (click)="get_list(x.ad_type.value,null)">{{x.ad_type.display}}
                     </a>
                     <ul class="dropdown-menu" *ngIf="x.ad_category.length !== 0">
                         <li *ngFor="let y of x.ad_category">
@@ -24,7 +24,11 @@
 
 <ul *ngIf="active" class="breadcrumb" style="padding-left:  50px">
     <li><a (click)="backToHome()" style="cursor: pointer">HOME</a></li>
-    <li>{{cat | uppercase}}</li>
+    <li>
+        <span *ngIf="subcat == 'null' || subcat == '' || subcat == undefined">{{cat | uppercase}}</span>
+        <a *ngIf="subcat !== 'null' && subcat !== '' && subcat !== undefined" (click)="get_list(ad_type,null)"
+            style="cursor: pointer">{{cat | uppercase}}</a>
+    </li>
     <li *ngIf="subcat !== 'null' && subcat !== '' && subcat !== undefined">{{subcat | uppercase}}</li>
 </ul>
 

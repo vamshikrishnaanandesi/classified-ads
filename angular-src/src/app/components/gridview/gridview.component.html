@@ -3,10 +3,10 @@
 <div class="slide-container">
     <div class="wrapper">
         <div class="col-md-4" *ngFor="let x of topPicks">
-            <div class="card" style="width: 22rem;">
+            <div class="card">
                 <img (click)="get_one_ad(x._id)" class="clash-card__image clash-card__image--barbarian"
-                    [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'"
-                    alt="Card image cap">
+                    [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'" alt="Card image cap"
+                    style="width: 100%;">
                 <div class="card-body">
                     <p class="card-text" (click)="get_one_ad(x._id)">{{x.title}}</p>
                     <a class="btn btn-primary waves-effect waves-light" (click)="get_one_ad(x._id)">$ {{x.price}}</a>

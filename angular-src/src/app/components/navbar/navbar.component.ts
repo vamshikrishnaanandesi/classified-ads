@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   id: any = null;
   title: string;
   postAdForm: boolean;
+  isUser: boolean;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private toaster: ToastrService, private formBuilder: FormBuilder, private commonservice: CommonService) { }
 
   ngOnInit() {
@@ -33,11 +34,12 @@ export class NavbarComponent implements OnInit {
       this.id = data.id;
     })
     this.postView = (sessionStorage.getItem('post') == 'true') ? true : false;
-    this.isLoggedIn = (sessionStorage.getItem('login') == 'true') ? true : false
+    this.isLoggedIn = (sessionStorage.getItem('login') == 'true') ? true : false;
+    this.isUser = (sessionStorage.getItem('role') == 'user') ? true : false;
 
     this.postForm = this.formBuilder.group({
       'ad_type': ['', Validators.required],
-      'title': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+      'title': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       'category': ['', Validators.required],
       'price': ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(this.numPattern)])],
       "contact_details": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
@@ -45,7 +47,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.reportForm = this.formBuilder.group({
-      "description": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      "description": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(500)])],
     })
   }
 
@@ -141,5 +143,9 @@ export class NavbarComponent implements OnInit {
   reportFun() {
     this.title = 'Help us better understand why you want to report this ad';
     this.postAdForm = false;
+  }
+
+  myAds() {
+    this.router.navigate(['myads']);
   }
 }

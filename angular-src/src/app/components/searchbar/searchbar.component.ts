@@ -14,6 +14,7 @@ export class SearchbarComponent implements OnInit {
   active: boolean = false;
   first: boolean = true;
   listItem: any = config.menuList;
+  ad_type: any = null;
   constructor(private router: Router, private _location: Location, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -22,10 +23,14 @@ export class SearchbarComponent implements OnInit {
     this.activatedRoute.params.subscribe(data => {
       this.cat = data.ad_type;
       this.subcat = data.ad_category
+      if (this.router.url == '/myads') {
+        this.cat = 'My Ads';
+      }
     })
   }
 
   get_list(menu, submenu) {
+    this.ad_type = menu;
     this.router.navigate(['list', { 'ad_type': menu, 'ad_category': submenu }]);
   }
 

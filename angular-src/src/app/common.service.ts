@@ -41,4 +41,8 @@ export class CommonService {
     console.log(data);
     return this.http.post(this._config.urls.api + 'ads/report_ad', data);
   }
+
+  myAds(data: any): Observable<any> {
+    return this.http.post(this._config.urls.api + 'ads/get_ads_by_user_type', data)
+  }
 }

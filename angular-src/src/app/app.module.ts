@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { OwlModule } from 'ngx-owl-carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MyadsComponent } from './components/myads/myads.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ListviewComponent,
     PostviewComponent,
     SearchbarComponent,
+    MyadsComponent,
   ],
   imports: [
     NgImageSliderModule,
