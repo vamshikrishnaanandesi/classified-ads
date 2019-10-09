@@ -14,6 +14,7 @@ export class SearchbarComponent implements OnInit {
   active: boolean = false;
   first: boolean = true;
   listItem: any = config.menuList;
+  ad_type: any = null;
   constructor(private router: Router, private _location: Location, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class SearchbarComponent implements OnInit {
   }
 
   get_list(menu, submenu) {
+    this.ad_type = menu;
     this.router.navigate(['list', { 'ad_type': menu, 'ad_category': submenu }]);
   }
 
