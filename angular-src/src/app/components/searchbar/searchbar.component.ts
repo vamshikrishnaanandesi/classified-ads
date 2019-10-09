@@ -22,6 +22,9 @@ export class SearchbarComponent implements OnInit {
     this.activatedRoute.params.subscribe(data => {
       this.cat = data.ad_type;
       this.subcat = data.ad_category
+      if (this.router.url == '/myads') {
+        this.cat = 'My Ads';
+      }
     })
   }
 

@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
     this.postForm = this.formBuilder.group({
       'ad_type': ['', Validators.required],
-      'title': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+      'title': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       'category': ['', Validators.required],
       'price': ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(this.numPattern)])],
       "contact_details": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.reportForm = this.formBuilder.group({
-      "description": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      "description": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(500)])],
     })
   }
 

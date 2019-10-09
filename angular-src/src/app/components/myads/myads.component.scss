@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 $font: 'Lato',
 sans-serif;
-$white: #F5F5F5;
-$light: #E0C9CB;
+$white: rgb(230, 232, 238);
+$light: rgb(173, 185, 199);
 $tan: #C3A1A0;
 $pink: rgb(82, 95, 167);
-$rose:  rgb(82, 95, 167);;
+$rose:  rgb(192, 196, 219);;
 $dark: #4E4E4E;
 html {
     display: grid;

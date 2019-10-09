@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div>
+<!-- <div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div> -->
 <div class="container">
     <section *ngIf="showCar" class="grid-col-12" style="margin-top: 50px">
         <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']">
@@ -12,36 +12,37 @@
     </section>
     <div class="row">
         <div class="col-sm-4">
-            <div class="card card-price">
+            <div class="">
                 <div class="card-body">
                     <div class="lead">{{ad.title}}</div>
-                    <ul class="details">
-                        <li>{{ad.contact_details}}</li>
-                    </ul>
+                    <hr>
+                    <div style="margin-bottom: 10px">
+                        {{ad.contact_details}}
+                    </div>
                     <table class="table">
                         <tr>
                             <th></th>
                             <th></th>
                         </tr>
                         <tr>
-                            <td>Ad Type</td>
-                            <td class="price">{{ad.ad_type}}</td>
+                            <td>Ad Type :</td>
+                            <td style="font-weight:bold">{{ad.ad_type}}</td>
                         </tr>
                         <tr>
-                            <td>Ad Category</td>
-                            <td class="price">{{ad.category}}</td>
+                            <td>Ad Category :</td>
+                            <td style="font-weight:bold">{{ad.category}}</td>
                         </tr>
                         <tr>
-                            <td>Price</td>
-                            <td class="price">$ {{ad.price}}</td>
+                            <td>Price :</td>
+                            <td style="font-weight:bold">$ {{ad.price}}</td>
                         </tr>
                         <tr>
-                            <td>Status</td>
-                            <td class="price">{{ad.status}}</td>
+                            <td>Status :</td>
+                            <td style="font-weight:bold">{{ad.status}}</td>
                         </tr>
                         <tr>
-                            <td>Posted On</td>
-                            <td class="price">{{ad.createdAt | date :'dd-MMMM-yy'}}</td>
+                            <td>Posted On :</td>
+                            <td style="font-weight:bold">{{ad.createdAt | date :'dd-MMMM-yy'}}</td>
                         </tr>
                     </table>
                 </div>
