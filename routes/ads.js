@@ -214,6 +214,62 @@ router.post("/get_ads_by_type", (req, res) => {
   }
 }); // find one product - endquery
 
+// get ads by user type -start
+router.post("/get_ads_by_user_type", (req, res) => {
+  req.assert("user_type", "Ad type should not be empty").notEmpty();
+  var errors = req.validationErrors();
+  let query = {};
+  if (!errors) {
+    let data = req.body;
+    if (data.user_type) {
+      query = { user_type: data.user_type };
+    };
+    adService
+      .getAdsByType(query)
+      .then(response => {
+        if (!response) {
+          throw {
+            reason: "failed"
+          };
+        } else {
+          for (i = 0; i < response.length; i++) {
+            let image_data = [];
+            if (response[i].images.length != 0) {
+              response[i].images.forEach(element => {
+                image_data.push({
+                  url: utils.getPreSignedURL(element.url)
+                });
+              });
+            }
+            response[i].images = image_data;
+          }
+          res
+            .status(HttpStatus.ACCEPTED)
+            .json({ success: true, msg: "Fetched", data: response });
+        }
+      })
+      .catch(err => {
+        if (err.reason == "failed") {
+          res
+            .status(HttpStatus.UNAUTHORIZED)
+            .json({ success: false, msg: "Id not Found" });
+        } else if (err.name === "MongoError" && err.code === 11000) {
+          return res
+            .status(HttpStatus.METHOD_NOT_ALLOWED)
+            .json({ success: false, msg: "duplicate error", error: err });
+        } else {
+          return res
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .json({ success: false, msg: "Internal server error", error: err });
+        }
+      });
+  } else {
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ success: false, msg: "Required params missing", errors: errors });
+  }
+}); // get ads by user type - endquery
+
 // report an ad -start
 router.post("/report_ad", (req, res) => {
   req.assert("ad_id", "Ad type should not be empty").notEmpty();
