@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   id: any = null;
   title: string;
   postAdForm: boolean;
+  isUser: boolean;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private toaster: ToastrService, private formBuilder: FormBuilder, private commonservice: CommonService) { }
 
   ngOnInit() {
@@ -33,7 +34,8 @@ export class NavbarComponent implements OnInit {
       this.id = data.id;
     })
     this.postView = (sessionStorage.getItem('post') == 'true') ? true : false;
-    this.isLoggedIn = (sessionStorage.getItem('login') == 'true') ? true : false
+    this.isLoggedIn = (sessionStorage.getItem('login') == 'true') ? true : false;
+    this.isUser = (sessionStorage.getItem('role') == 'user') ? true : false;
 
     this.postForm = this.formBuilder.group({
       'ad_type': ['', Validators.required],
@@ -141,5 +143,9 @@ export class NavbarComponent implements OnInit {
   reportFun() {
     this.title = 'Help us better understand why you want to report this ad';
     this.postAdForm = false;
+  }
+
+  myAds() {
+    this.router.navigate(['myads']);
   }
 }

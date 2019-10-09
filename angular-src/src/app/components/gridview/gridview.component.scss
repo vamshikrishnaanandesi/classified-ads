@@ -56,14 +56,15 @@
         .clash-card__image--barbarian {
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian-bg.jpg');
             img {
-                width: 200px;
+                // width: 200px;
+                // max-width: 20% !important;
             }
         }
         
         .clash-card__image--archer {
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/archer-bg.jpg');
             img {
-                width: 400px;
+                // width: 400px;
                 position: absolute;
                 top: -34px;
                 left: -37px;
@@ -73,7 +74,7 @@
         .clash-card__image--giant {
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/giant-bg.jpg');
             img {
-                width: 340px;
+                // width: 340px;
                 position: absolute;
                 top: -30px;
                 left: -25px;
@@ -83,7 +84,7 @@
         .clash-card__image--goblin {
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/goblin-bg.jpg');
             img {
-                width: 370px;
+                // width: 370px;
                 position: absolute;
                 top: -21px;
                 left: -37px;
@@ -93,8 +94,8 @@
         .clash-card__image--wizard {
             background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/wizard-bg.jpg');
             img {
-                width: 345px;
-                position: absolute;
+                // width: 345px;
+                // position: absolute;
                 top: -28px;
                 left: -10px;
             }
@@ -245,6 +246,15 @@
 
         img{
             cursor:  pointer !important;
+            // min-width: 996px !important;
+            // max-width: 996px !important;
         }
 
-       
+        .col-md-4{
+            margin-left: 10% !important;
+            width: 20% !important;
+            padding: 1% !important;
+            border-color: black !important;
+            border-style: ridge !important;
+            border-width: 0.5px !important;
+        }
