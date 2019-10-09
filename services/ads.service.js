@@ -11,11 +11,7 @@ const findOneAd = query => {
 };
 
 const findTopPicks = () => {
-  return Ads.aggregate([
-    {
-      $sample: { size: 2 }
-    }
-  ]);
+  return Ads.find({}, {}, { sort: { 'createdAt' : -1 } }).exec();
 };
 
 const getAdsByType = query => {
