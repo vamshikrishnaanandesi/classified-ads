@@ -148,4 +148,8 @@ export class NavbarComponent implements OnInit {
   myAds() {
     this.router.navigate(['myads']);
   }
+
+  reportedAds(){
+    this.router.navigate(['reportedads']);
+  }
 }

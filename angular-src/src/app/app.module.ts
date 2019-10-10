@@ -19,6 +19,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { OwlModule } from 'ngx-owl-carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MyadsComponent } from './components/myads/myads.component';
+import { ReportedadsComponent } from './components/reportedads/reportedads.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MyadsComponent } from './components/myads/myads.component';
     PostviewComponent,
     SearchbarComponent,
     MyadsComponent,
+    ReportedadsComponent,
   ],
   imports: [
     NgImageSliderModule,

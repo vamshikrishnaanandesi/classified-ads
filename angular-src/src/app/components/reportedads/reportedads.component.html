@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<app-searchbar></app-searchbar>
+<!-- <div class="back-button" (click)="back()">
+    <div class="arrow-wrap">
+        <span class="arrow-part-1"></span>
+        <span class="arrow-part-2"></span>
+        <span class="arrow-part-3"></span>
+    </div>
+</div> -->
+<div class="container" *ngFor="let x of listView">
+    <div class="images">
+        <img (click)="redirectToPost(x._id)"
+            [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'" />
+    </div>
+    <button class="btn btn-sm btn-danger" (click)="deletePost(x._id)" style="background-color: rgb(207, 44, 44);margin-bottom: 10px">Delete Post <span class="fa fa-trash"></span></button>
+    <div class="product">
+        <h1 (click)="redirectToPost(x._id)">{{x.title}}</h1>
+        <div class="buttons">
+            <button class="add" (click)="redirectToPost(x._id)">${{x.price}}</button>
+        </div>
+
+    </div>
+</div>
+<div id="main" *ngIf="listView !== undefined && listView.length==0">
+    <div class="fof">
+        <h1>No Posts Available</h1>
+    </div>
+</div>
