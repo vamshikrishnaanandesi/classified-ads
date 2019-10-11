@@ -342,4 +342,30 @@ router.post("/delete_ad", (req, res) => {
 });
 // Delete ad API - end
 
+// Get reported apps API start
+router.get("/get_reported_ads", (req, res) => {
+  var errors = req.validationErrors();
+  if (!errors) {
+    // const query = { status: 'reported' };
+    adService.findReportedAds()
+      .then(response => {
+        console.log(response);
+        if (!response) {
+          throw {
+            reason: "failed"
+          };
+        }
+        else {
+          res
+            .status(HttpStatus.ACCEPTED)
+            .json({ success: true, msg: "Fetched", data: response });
+        }
+      })
+  } else {
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ success: false, msg: "Required params missing", errors: errors });
+  }
+}); // find one product - endquery
+
 module.exports = router;

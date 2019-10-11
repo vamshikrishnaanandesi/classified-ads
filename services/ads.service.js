@@ -10,6 +10,25 @@ const findOneAd = query => {
   return Ads.findById(query).exec();
 };
 
+const findReportedAds = () => {
+  return reportedAds.aggregate([
+    {"$lookup": {
+      "from": "ads",
+      "localField": "ad_id",
+      "foreignField": "_id",
+      "as": "adsData"
+    }},
+    {
+      "$group": {
+      "_id": "$ad_id",
+      "count": {"$sum": 1},
+      "ads": {
+        "$push": "$adsData"
+      }
+    }}
+  ])
+};
+
 const findTopPicks = () => {
   return Ads.find({}, {}, { sort: { 'createdAt' : -1 } }).exec();
 };
@@ -37,5 +56,6 @@ module.exports = {
   getAdsByType,
   reportAd,
   updateAd,
-  deleteAd
+  deleteAd,
+  findReportedAds
 };
