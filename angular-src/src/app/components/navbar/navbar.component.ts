@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray, FormCon
 import { CommonService } from 'src/app/common.service';
 import { config } from '../../../../constant';
 declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: 'app-navbar',
@@ -91,6 +92,7 @@ export class NavbarComponent implements OnInit {
           $.noConflict();
           $("#myModal").modal("hide");
           this.router.navigate(['gridview']);
+          window.location.reload();
         } else {
           this.toaster.error('Internal Server Error, Please try again later', 'Error!')
         }
