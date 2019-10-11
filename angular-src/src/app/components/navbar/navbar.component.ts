@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { CommonService } from 'src/app/common.service';
+import { config } from '../../../../constant';
 declare var $: any;
 
 @Component({
@@ -26,6 +27,9 @@ export class NavbarComponent implements OnInit {
   title: string;
   postAdForm: boolean;
   isUser: boolean;
+  config = config;
+  ad_Type: any;
+  ad_category: any;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private toaster: ToastrService, private formBuilder: FormBuilder, private commonservice: CommonService) { }
 
   ngOnInit() {
@@ -40,7 +44,7 @@ export class NavbarComponent implements OnInit {
     this.postForm = this.formBuilder.group({
       'ad_type': ['', Validators.required],
       'title': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
-      'category': ['', Validators.required],
+      'category': [''],
       'price': ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(this.numPattern)])],
       "contact_details": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       // "status": ['', Validators.required],
@@ -49,6 +53,8 @@ export class NavbarComponent implements OnInit {
     this.reportForm = this.formBuilder.group({
       "description": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(500)])],
     })
+
+    this.getAd_Types();
   }
 
   get f() { return this.postForm.controls }
@@ -149,7 +155,21 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['myads']);
   }
 
-  reportedAds(){
+  reportedAds() {
     this.router.navigate(['reportedads']);
+  }
+
+  getAd_Types() {
+    this.ad_Type = [];
+    this.ad_Type = this.config.menuList;
+  }
+
+  getAd_category(ad_type: any) {
+    this.ad_category = [];
+    this.config.menuList.forEach(element => {
+      if (element.ad_type.value === ad_type) {
+        this.ad_category = element.ad_category;
+      }
+    });
   }
 }

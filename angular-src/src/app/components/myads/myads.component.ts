@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-myads',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MyadsComponent implements OnInit {
   listView: any;
-  constructor(private commonService: CommonService, private router: Router) { }
+  constructor(private location: Location, private commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
     let data = { 'user_type': sessionStorage.getItem('role') }
@@ -20,6 +21,10 @@ export class MyadsComponent implements OnInit {
 
   redirectToPost(id: any) {
     this.router.navigate(['post', { id: id }])
+  }
+
+  back() {
+    this.location.back();
   }
 
 }

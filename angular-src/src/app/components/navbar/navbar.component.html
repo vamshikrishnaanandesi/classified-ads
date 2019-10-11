@@ -33,12 +33,11 @@
                                 <label>AD Type *</label>
                                 <select formControlName="ad_type" type="text" name="ad_type" class="form-control"
                                     placeholder="Ad Type" value=""
-                                    [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }">
+                                    [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }"
+                                    (change)="getAd_category($event.target.value)">
                                     <option value="">Select</option>
-                                    <option value="sell">Sell</option>
-                                    <option value="lost-found">Lost-Found</option>
-                                    <option value="rent">Rent</option>
-                                    <option value="events">Events</option>
+                                    <option [value]="x.ad_type.value" *ngFor="let x of ad_Type">{{x.ad_type.display}}
+                                    </option>
                                 </select>
                                 <div *ngIf="submitted && f.ad_type.errors" class="invalid-feedback">
                                     <div *ngIf="f.ad_type.errors.required">Ad Type is required.</div>
@@ -74,20 +73,18 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label>Category *</label>
+                                <label>Category</label>
                                 <select formControlName="category" type="text" name="category" class="form-control"
                                     placeholder="electronics" value=""
                                     [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
-                                    <option value="">Select</option>
-                                    <option value="electronics">Electronics</option>
-                                    <option value="books">Books</option>
-                                    <option value="jewellery">Jewellery</option>
-                                    <option value="vehicles">Vehicles</option>
-                                    <option value="misc">Misc.</option>
+                                    <option value="">--Select--</option>
+
+                                    <option [value]="x.value" *ngFor="let x of ad_category">
+                                        {{x.display}}</option>
                                 </select>
-                                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
                                     <div *ngIf="f.category.errors.required">Category is required.</div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="clearfix"></div>

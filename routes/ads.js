@@ -319,4 +319,27 @@ router.post("/report_ad", (req, res) => {
   }
 }); // find one product - endquery
 
+// Delete ad API - start
+router.post("/delete_ad", (req, res) => {
+  let data = req.body;
+  adService
+    .deleteAd(data.ad_id)
+    .then(response => {
+      if (!response) {
+        throw {
+          reason: "failed"
+        };
+      } else {
+        res.json({ status: HttpStatus.OK, msg: "Ad deleted." });
+      }
+    })
+    .catch(err => {
+      if ((err.reason = "failed")) {
+        console.log(err)
+        res.json({ status: HttpStatus.INTERNAL_SERVER_ERROR, msg: err });
+      }
+    });
+});
+// Delete ad API - end
+
 module.exports = router;
