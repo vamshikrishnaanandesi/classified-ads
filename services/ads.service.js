@@ -25,11 +25,17 @@ const reportAd = query => {
 const updateAd = query => {
   return reportedAds.findByIdAndUpdate(query.ad_id, {$set: {status: 'reported'}}, {new: true}).exec();
 }
+
+const deleteAd = query => {
+  return Ads.findByIdAndDelete({_id: query}).exec();
+}
+
 module.exports = {
   createAd,
   findOneAd,
   findTopPicks,
   getAdsByType,
   reportAd,
-  updateAd
+  updateAd,
+  deleteAd
 };
