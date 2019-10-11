@@ -1,4 +1,11 @@
 <app-navbar></app-navbar>
+<div class="back-button" (click)="backToPage()">
+    <div class="arrow-wrap">
+        <span class="arrow-part-1"></span>
+        <span class="arrow-part-2"></span>
+        <span class="arrow-part-3"></span>
+    </div>
+</div>
 <!-- <div class="back" (click)="backToPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</div> -->
 <div class="container">
     <section *ngIf="showCar" class="grid-col-12" style="margin-top: 50px">

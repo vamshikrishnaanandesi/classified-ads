@@ -25,6 +25,8 @@ export class SearchbarComponent implements OnInit {
       this.subcat = data.ad_category
       if (this.router.url == '/myads') {
         this.cat = 'My Ads';
+      } else if (this.router.url == '/reportedads') {
+        this.cat = 'Reported Ads';
       }
     })
   }

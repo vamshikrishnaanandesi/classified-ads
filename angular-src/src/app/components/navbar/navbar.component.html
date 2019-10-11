@@ -4,15 +4,15 @@
             <a class="navbar-brand" [routerLink]="isLoggedIn?['/gridview']:['']">CDU BULLETIN BOARD</a> </div>
         <a class="nav-brand pull-right" (click)="logout()" *ngIf="isLoggedIn"><span class="fa fa-power-off"></span>
             Logout</a>
-        <button class="btn btn-danger pull-right mr2" *ngIf="postView && isUser" data-toggle="modal"
+        <button class="btn btn-sm btn-danger pull-right mr2" *ngIf="postView && isUser" data-toggle="modal"
             data-target="#myModal" (click)="reportFun()">Report
             this
             Ad</button>
-        <button *ngIf="isUser" class="btn btn-success pull-right mr2" data-toggle="modal" data-target="#myModal"
+        <button class="btn btn-sm btn-success pull-right mr2" data-toggle="modal" data-target="#myModal"
             (click)="adFun()">Post
             an Ad</button>
-        <button class="btn btn-primary pull-right mr2" (click)="myAds()" *ngIf="isUser">My Ad's</button>
-        <button class="btn btn-danger pull-right mr2" (click)="reportedAds()" *ngIf="!isUser">Reported Ad's</button>
+        <button class="btn btn-sm btn-primary pull-right mr2" (click)="myAds()">My Ad's</button>
+        <button class="btn btn-sm btn-danger pull-right mr2" (click)="reportedAds()">Reported Ad's</button>
     </div>
 </nav>
 
@@ -33,12 +33,11 @@
                                 <label>AD Type *</label>
                                 <select formControlName="ad_type" type="text" name="ad_type" class="form-control"
                                     placeholder="Ad Type" value=""
-                                    [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }">
+                                    [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }"
+                                    (change)="getAd_category($event.target.value)">
                                     <option value="">Select</option>
-                                    <option value="sell">Sell</option>
-                                    <option value="lost-found">Lost-Found</option>
-                                    <option value="rent">Rent</option>
-                                    <option value="events">Events</option>
+                                    <option [value]="x.ad_type.value" *ngFor="let x of ad_Type">{{x.ad_type.display}}
+                                    </option>
                                 </select>
                                 <div *ngIf="submitted && f.ad_type.errors" class="invalid-feedback">
                                     <div *ngIf="f.ad_type.errors.required">Ad Type is required.</div>
@@ -74,20 +73,18 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label>Category *</label>
+                                <label>Category</label>
                                 <select formControlName="category" type="text" name="category" class="form-control"
                                     placeholder="electronics" value=""
                                     [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
-                                    <option value="">Select</option>
-                                    <option value="electronics">Electronics</option>
-                                    <option value="books">Books</option>
-                                    <option value="jewellery">Jewellery</option>
-                                    <option value="vehicles">Vehicles</option>
-                                    <option value="misc">Misc.</option>
+                                    <option value="">--Select--</option>
+
+                                    <option [value]="x.value" *ngFor="let x of ad_category">
+                                        {{x.display}}</option>
                                 </select>
-                                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
                                     <div *ngIf="f.category.errors.required">Category is required.</div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -95,7 +92,7 @@
                         <div class="col-12">
 
                             <div class="col-md-12">
-                                <label>Contact Details *</label>
+                                <label>Description *</label>
                                 <textarea type="text" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.contact_details.errors }"
                                     formControlName="contact_details">

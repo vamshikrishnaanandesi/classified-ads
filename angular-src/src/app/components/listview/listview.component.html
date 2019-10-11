@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
 <app-searchbar></app-searchbar>
-<!-- <div class="back-button" (click)="back()">
+<div class="back-button" (click)="back()">
     <div class="arrow-wrap">
         <span class="arrow-part-1"></span>
         <span class="arrow-part-2"></span>
         <span class="arrow-part-3"></span>
     </div>
-</div> -->
+</div>
 <div class="container" *ngFor="let x of listView">
     <div class="images">
         <img (click)="redirectToPost(x._id)" [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'" />

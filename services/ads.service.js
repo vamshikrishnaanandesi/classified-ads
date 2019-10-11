@@ -55,7 +55,6 @@ module.exports = {
   findTopPicks,
   getAdsByType,
   reportAd,
-  updateAd,
   deleteAd,
   findReportedAds
 };
