@@ -11,7 +11,6 @@ export class CommonService {
   constructor(private http: HttpClient) { }
 
   register(data: any): Observable<any> {
-    console.log(data)
     return this.http.post(this._config.urls.api + 'users/register', data)
   }
 
@@ -33,12 +32,10 @@ export class CommonService {
   }
 
   getAdType(data: any): Observable<any> {
-    console.log(data);
     return this.http.post(this._config.urls.api + 'ads/get_ads_by_type', data);
   }
 
   reportAd(data: any): Observable<any> {
-    console.log(data);
     return this.http.post(this._config.urls.api + 'ads/report_ad', data);
   }
 
@@ -48,5 +45,9 @@ export class CommonService {
 
   deletePost(data: any): Observable<any> {
     return this.http.post(this._config.urls.api + 'ads/delete_ad', data);
+  }
+
+  getReportedAds(): Observable<any> {
+    return this.http.get(this._config.urls.api + 'ads/get_reported_ads');
   }
 }

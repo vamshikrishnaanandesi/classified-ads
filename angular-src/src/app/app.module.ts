@@ -20,6 +20,7 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MyadsComponent } from './components/myads/myads.component';
 import { ReportedadsComponent } from './components/reportedads/reportedads.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 @NgModule({
   declarations: [
@@ -44,8 +45,8 @@ import { ReportedadsComponent } from './components/reportedads/reportedads.compo
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     OwlModule,
-    MDBBootstrapModule.forRoot()
-    
+    MDBBootstrapModule.forRoot(),
+    FilterPipeModule
     
     
   ],

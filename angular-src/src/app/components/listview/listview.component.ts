@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonService } from 'src/app/common.service';
 import { Location } from '@angular/common';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-listview',
@@ -12,12 +13,12 @@ import { Location } from '@angular/common';
 })
 export class ListviewComponent implements OnInit {
   listView: any;
-  constructor(private location: Location,private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
+  constructor(private filterPipe: FilterPipe, private location: Location, private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
+    sessionStorage.setItem('post', 'false');
     this.activatedRoute.params.subscribe(data => {
       this.commonService.getAdType(data).subscribe(value => {
-        console.log(value);
         this.listView = value.data;
       })
     })
@@ -29,5 +30,16 @@ export class ListviewComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  searchAds(val: any) {
+    if (val !== null && val !== undefined && val !== '') {
+      this.commonService.getTopPicks().subscribe(data => {
+        this.listView = data.data;
+        this.listView = this.filterPipe.transform(this.listView, { title: val })
+      });
+    } else {
+      this.ngOnInit();
+    }
   }
 }

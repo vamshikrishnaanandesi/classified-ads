@@ -28,6 +28,7 @@
     "mdbootstrap": "^4.8.10",
     "ng-image-slider": "^2.0.3",
     "ng-simple-slideshow": "^1.2.9",
+    "ngx-filter-pipe": "^2.1.2",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-toastr": "^10.2.0",
     "owl.carousel": "^2.3.4",

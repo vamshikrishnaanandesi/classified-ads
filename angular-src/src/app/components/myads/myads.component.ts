@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-myads',
@@ -10,9 +11,10 @@ import { Location } from '@angular/common';
 })
 export class MyadsComponent implements OnInit {
   listView: any;
-  constructor(private location: Location, private commonService: CommonService, private router: Router) { }
+  constructor(private filterPipe: FilterPipe, private location: Location, private commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
+    sessionStorage.setItem('post', 'false');
     let data = { 'user_type': sessionStorage.getItem('role') }
     this.commonService.myAds(data).subscribe(value => {
       this.listView = value.data;
@@ -25,6 +27,17 @@ export class MyadsComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  searchAds(val: any) {
+    if (val !== null && val !== undefined && val !== '') {
+      this.commonService.getTopPicks().subscribe(data => {
+        this.listView = data.data;
+        this.listView = this.filterPipe.transform(this.listView, { title: val })
+      });
+    } else {
+      this.ngOnInit();
+    }
   }
 
 }

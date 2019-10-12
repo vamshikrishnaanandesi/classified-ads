@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-reportedads',
@@ -10,13 +12,13 @@ import { Location } from '@angular/common';
   styleUrls: ['./reportedads.component.scss']
 })
 export class ReportedadsComponent implements OnInit {
-  listView: any;
+  listView: any = [];
 
-  constructor(private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
+  constructor(private filterPipe: FilterPipe, private router: Router, private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
 
   ngOnInit() {
-    this.commonservice.getAdType({ ad_type: 'lost-found', ad_category: 'electronics' }).subscribe(Value => {
-      console.log(Value);
+    sessionStorage.setItem('post', 'false');
+    this.commonservice.getReportedAds().subscribe(Value => {
       this.listView = Value.data;
     })
   }
@@ -36,5 +38,20 @@ export class ReportedadsComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  redirectToPost(id: any) {
+    this.router.navigate(['post', { id: id }])
+  }
+
+  searchAds(val: any) {
+    if (val !== null && val !== undefined && val !== '') {
+      this.commonservice.getTopPicks().subscribe(data => {
+        this.listView = data.data;
+        this.listView = this.filterPipe.transform(this.listView, { title: val })
+      });
+    } else {
+      this.ngOnInit();
+    }
   }
 }

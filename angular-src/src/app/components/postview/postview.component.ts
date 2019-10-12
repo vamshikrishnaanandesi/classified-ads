@@ -26,7 +26,6 @@ export class PostviewComponent implements OnInit {
     this.activedRoute.params.subscribe(data => {
       this.commonService.getOnead(data.id).subscribe(data => {
         this.ad = data.data;
-        console.log(this.ad.images)
         this.mySlideImages =  this.ad.images.map((i:any)=>i.url)
           this.showCar = true
       })
