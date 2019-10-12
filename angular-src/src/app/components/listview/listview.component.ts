@@ -15,6 +15,7 @@ export class ListviewComponent implements OnInit {
   constructor(private location: Location,private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
+    sessionStorage.setItem('post', 'false');
     this.activatedRoute.params.subscribe(data => {
       this.commonService.getAdType(data).subscribe(value => {
         console.log(value);

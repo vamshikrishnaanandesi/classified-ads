@@ -8,15 +8,24 @@
     </div>
 </div>
 <div class="container" *ngFor="let x of listView">
-    <div class="images">
-        <img (click)="redirectToPost(x._id)"
-            [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'" />
-    </div>
-    <button class="btn btn-sm btn-danger" (click)="deletePost(x._id)" style="background-color: rgb(207, 44, 44);margin-bottom: 10px">Delete Post <span class="fa fa-trash"></span></button>
-    <div class="product">
-        <h1 (click)="redirectToPost(x._id)">{{x.title}}</h1>
-        <div class="buttons">
-            <button class="add" (click)="redirectToPost(x._id)">${{x.price}}</button>
+    <div *ngIf="x.ads[0].length !== 0">
+        <div class="dropdown pull-right" style="margin-top: 10px;">
+            <span class="fa fa-ellipsis-v" data-toggle="dropdown" style="cursor: pointer;"></span>
+            <ul class="dropdown-menu" style="cursor: pointer;">
+                <li><a (click)="deletePost(x._id)" style="color: darkred;">Delete Ad <span class="fa fa-trash"
+                            style="color: darkred;"></span></a></li>
+            </ul>
+        </div>
+        <div class="images">
+            <img (click)="redirectToPost(x._id)"
+                [src]="x.ads[0][0].images.length !== 0 ? 'x.ads[0][0].images[0].url' : '../assets/images/images.png'" />
+        </div>
+        <div class="product">
+            <span (click)="redirectToPost(x._id)" style="cursor: pointer;">{{x.ads[0][0].title | uppercase}}</span>
+            <div class="buttons">
+                <button class="add" (click)="redirectToPost(x._id)">${{x.ads[0][0].price}}</button>
+            </div>
+            <h5 style="color: darkblue;">Reported Count : <b style="color: chocolate;">{{x.count}}</b></h5>
         </div>
 
     </div>

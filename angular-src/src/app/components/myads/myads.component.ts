@@ -13,6 +13,7 @@ export class MyadsComponent implements OnInit {
   constructor(private location: Location, private commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
+    sessionStorage.setItem('post', 'false');
     let data = { 'user_type': sessionStorage.getItem('role') }
     this.commonService.myAds(data).subscribe(value => {
       this.listView = value.data;

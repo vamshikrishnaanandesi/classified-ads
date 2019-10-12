@@ -2,10 +2,10 @@
 $font: 'Lato',
 sans-serif;
 $white: #F5F5F5;
-$light: #E0C9CB;
-$tan: #C3A1A0;
-$pink: #D9AAB7;
-$rose: #BA7E7E;
+$light: rgb(167, 211, 167);
+$tan: #ab7ec8;
+$pink: #ab7ec8;
+$rose: #ab7ec8;
 $dark: #4E4E4E;
 html {
     display: grid;
@@ -25,7 +25,7 @@ body {
     width: 50%;
     background: $white;
     border-radius: 10px;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 p {
@@ -273,4 +273,11 @@ body{
       transform-origin: 0 0;
     }
   }
+}
+.card-body{
+    text-align: justify !important;
+    padding: 2% !important;
+}
+.pull-right>.dropdown-menu{
+ min-width: 10px !important;
 }

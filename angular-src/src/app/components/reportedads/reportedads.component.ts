@@ -3,6 +3,7 @@ import { CommonService } from 'src/app/common.service';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reportedads',
@@ -12,11 +13,12 @@ import { Location } from '@angular/common';
 export class ReportedadsComponent implements OnInit {
   listView: any;
 
-  constructor(private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
+  constructor(private router: Router, private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
 
   ngOnInit() {
-    this.commonservice.getAdType({ ad_type: 'lost-found', ad_category: 'electronics' }).subscribe(Value => {
-      console.log(Value);
+    sessionStorage.setItem('post', 'false');
+    this.commonservice.getReportedAds().subscribe(Value => {
+      console.log(Value.data);
       this.listView = Value.data;
     })
   }
@@ -36,5 +38,9 @@ export class ReportedadsComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  redirectToPost(id: any) {
+    this.router.navigate(['post', { id: id }])
   }
 }

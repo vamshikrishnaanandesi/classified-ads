@@ -9,7 +9,7 @@
 </div>
 <div class="container" *ngFor="let x of listView">
     <div class="images">
-        <img (click)="redirectToPost(x._id)" [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'" />
+        <img (click)="redirectToPost(x._id)" [src]="x.images.length !== 0 ? 'x.images[0].url' : '../assets/images/images.png'" />
     </div>
     <div class="product">
         <h1 (click)="redirectToPost(x._id)">{{x.title}}</h1>

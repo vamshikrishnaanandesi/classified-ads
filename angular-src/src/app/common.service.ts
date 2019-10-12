@@ -49,4 +49,8 @@ export class CommonService {
   deletePost(data: any): Observable<any> {
     return this.http.post(this._config.urls.api + 'ads/delete_ad', data);
   }
+
+  getReportedAds(): Observable<any> {
+    return this.http.get(this._config.urls.api + 'ads/get_reported_ads');
+  }
 }

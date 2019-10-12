@@ -12,7 +12,7 @@
             (click)="adFun()">Post
             an Ad</button>
         <button class="btn btn-sm btn-primary pull-right mr2" (click)="myAds()">My Ad's</button>
-        <button class="btn btn-sm btn-danger pull-right mr2" (click)="reportedAds()">Reported Ad's</button>
+        <button class="btn btn-sm btn-danger pull-right mr2" (click)="reportedAds()" *ngIf="!isUser">Reported Ad's</button>
     </div>
 </nav>
 
