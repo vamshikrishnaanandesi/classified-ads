@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<app-searchbar></app-searchbar>
+<app-searchbar (messageToEmit)="searchAds($event)"></app-searchbar>
 <div class="slide-container">
     <div class="wrapper">
         <div class="col-md-4" *ngFor="let x of topPicks">
@@ -13,19 +13,10 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="clash-card barbarian" *ngFor="let x of topPicks">
-            <div class="clash-card__image clash-card__image--barbarian">
-                <img [src]="x.images.length !== 0 ? x.images[0].url : '../assets/images/images.png'" />
-            </div>
-            <div class="clash-card__level clash-card__level--barbarian">{{x.ad_type}} | {{x.category}}</div>
-            <div class="clash-card__unit-name">{{x.title}}</div>
-            <div class="clash-card__unit-name">{{x.createdAt | date : 'dd-MMMM-yy'}}</div>
-            <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
-                <div class="one-third">
-                    <div class="stat"> $ {{x.price}}</div>
-                    <div class="stat-value" (click)="get_one_ad(x._id)">Read more >></div>
-                </div>
-            </div>
-        </div> -->
+    </div>
+</div>
+<div id="main" *ngIf="topPicks !== undefined && topPicks.length==0">
+    <div class="fof">
+        <h1>No Posts Available</h1>
     </div>
 </div>

@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
       return;
     } else {
       this.commonService.register(this.registerForm.value).subscribe(value => {
-        console.log(value)
         if (value.success) {
           this.toaster.success('Registration Successful.', 'Success!');
           this.login();

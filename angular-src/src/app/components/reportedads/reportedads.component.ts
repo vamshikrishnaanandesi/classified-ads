@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-reportedads',
@@ -11,14 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./reportedads.component.scss']
 })
 export class ReportedadsComponent implements OnInit {
-  listView: any;
+  listView: any = [];
 
-  constructor(private router: Router, private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
+  constructor(private filterPipe: FilterPipe, private router: Router, private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
 
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
     this.commonservice.getReportedAds().subscribe(Value => {
-      console.log(Value.data);
       this.listView = Value.data;
     })
   }
@@ -42,5 +42,16 @@ export class ReportedadsComponent implements OnInit {
 
   redirectToPost(id: any) {
     this.router.navigate(['post', { id: id }])
+  }
+
+  searchAds(val: any) {
+    if (val !== null && val !== undefined && val !== '') {
+      this.commonservice.getTopPicks().subscribe(data => {
+        this.listView = data.data;
+        this.listView = this.filterPipe.transform(this.listView, { title: val })
+      });
+    } else {
+      this.ngOnInit();
+    }
   }
 }

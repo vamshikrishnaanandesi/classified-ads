@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<app-searchbar></app-searchbar>
+<app-searchbar (messageToEmit)="searchAds($event)"></app-searchbar>
 <div class="back-button" (click)="back()">
     <div class="arrow-wrap">
         <span class="arrow-part-1"></span>

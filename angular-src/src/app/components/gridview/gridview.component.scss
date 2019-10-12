@@ -29,6 +29,7 @@
         .wrapper {
             padding-top: 40px;
             padding-bottom: 40px;
+            text-align: center !important;
             &:focus {
                 outline: 0;
             }
@@ -258,4 +259,14 @@
             border-style: ridge !important;
             border-width: 0.5px !important;
             margin-bottom: 10% !important;
+        }
+        #main {
+            display: table;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .fof {
+            display: table-cell;
+            vertical-align: middle;
         }

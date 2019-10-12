@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { config } from '../../../../constant';
@@ -9,6 +9,8 @@ import { config } from '../../../../constant';
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
+
+  @Output() messageToEmit = new EventEmitter<string>();
   cat: any = null;
   subcat: any = null;
   active: boolean = false;
@@ -38,5 +40,10 @@ export class SearchbarComponent implements OnInit {
 
   backToHome() {
     this.router.navigate(['gridview']);
+  }
+
+
+  filterData() {
+    this.messageToEmit.emit(document.getElementById('search')['value'].toString())
   }
 }
