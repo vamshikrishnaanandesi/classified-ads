@@ -54,4 +54,10 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
     if(err) throw err;
     callback(null, isMatch);
   });
+
+}
+
+module.exports.getUserByID = function(id, callback) {
+  const query = {_id: id}
+  return User.findById(query, callback);
 }
