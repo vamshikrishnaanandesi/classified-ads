@@ -37,6 +37,10 @@ const getAdsByType = query => {
     return Ads.find(query).exec();
 }
 
+const getAdsByUserID = query => {
+  return Ads.find({posted_by: query}).exec();
+}
+
 const reportAd = query => {
   return reportedAds.create(query);
 }
@@ -57,5 +61,6 @@ module.exports = {
   reportAd,
   deleteAd,
   updateAd,
+  getAdsByUserID,
   findReportedAds
 };
