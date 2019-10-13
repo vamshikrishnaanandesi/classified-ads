@@ -1,5 +1,3 @@
-
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserModule, By } from '@angular/platform-browser';
@@ -12,14 +10,16 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { GridviewComponent } from '../gridview/gridview.component';
 import { ListviewComponent } from '../listview/listview.component';
 import { PostviewComponent } from '../postview/postview.component';
+import { MyadsComponent } from '../myads/myads.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OwlModule } from 'ngx-owl-carousel';
-import { MyadsComponent } from '../myads/myads.component';
 import { ReportedadsComponent } from '../reportedads/reportedads.component';
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+import { FilterPipe } from 'ngx-filter-pipe';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+describe('ListviewComponent', () => {
+  let component: ListviewComponent;
+  let fixture: ComponentFixture<ListviewComponent>;
   let de: DebugElement;
   let el: HTMLElement;
 
@@ -37,45 +37,22 @@ describe('LoginComponent', () => {
       providers: [
         FormBuilder
       ],
-      imports: [OwlModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserModule, ReactiveFormsModule, ToastrModule.forRoot()]
+      imports: [FilterPipeModule,OwlModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserModule, ReactiveFormsModule, ToastrModule.forRoot()]
     })
       .compileComponents().then(() => {
-        fixture = TestBed.createComponent(LoginComponent);
+        fixture = TestBed.createComponent(ListviewComponent);
         component = fixture.componentInstance;
         component.ngOnInit();
-        de = fixture.debugElement.query(By.css('form'));
-        el = de.nativeElement;
       })
   }));
 
-
-  // it(`should have a text as 'Login'`, async(() => {
-  //   expect(component.text).toEqual('Login')
-  // }));
-
-  it(`should set submitted to true`, async(() => {
-    component.loginAuth();
-    expect(component.submitted).toBeTruthy()
+  it(`should call search ads method with param null`, async(() => {
+    component.searchAds(null);
+    expect(component.searched).toBeTruthy()
   }));
 
-  it(`should call the loginAuth method`, async(() => {
-    fixture.detectChanges();
-    spyOn(component, 'loginAuth');
-    el = fixture.debugElement.query(By.css('button')).nativeElement;
-    el.click();
-    expect(component.loginAuth).toHaveBeenCalledTimes(1)
+  it(`should call the register method with param string`, async(() => {
+    component.searchAds('abc');
+    expect(component.searched).toBeTruthy()
   }))
-
-  it(`form should be invalid`, async(() => {
-    component.loginForm.controls['email'].setValue('')
-    component.loginForm.controls['password'].setValue('')
-    expect(component.loginForm.valid).toBeFalsy()
-  }));
-
-  it(`form should be valid`, async(() => {
-    component.loginForm.controls['email'].setValue('hemantham02@gmail.com')
-    component.loginForm.controls['password'].setValue('hemanth@002')
-    expect(component.loginForm.valid).toBeTruthy()
-  }));
-
 });
