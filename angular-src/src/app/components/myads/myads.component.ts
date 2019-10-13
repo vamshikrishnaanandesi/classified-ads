@@ -34,7 +34,11 @@ export class MyadsComponent implements OnInit {
 
   searchAds(val: any) {
     if (val !== null && val !== undefined && val !== '') {
-      this.commonService.getTopPicks().subscribe(data => {
+      let data = {
+        'user_type': sessionStorage.getItem('role'),
+        'user_id': sessionStorage.getItem('userID')
+      }
+      this.commonService.myAds(data).subscribe(data => {
         this.listView = data.data;
         this.listView = this.filterPipe.transform(this.listView, { title: val })
       });

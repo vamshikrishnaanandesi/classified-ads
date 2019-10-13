@@ -13,11 +13,13 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class ListviewComponent implements OnInit {
   listView: any;
+  _data: any;
   constructor(private filterPipe: FilterPipe, private location: Location, private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
     this.activatedRoute.params.subscribe(data => {
+      this._data = data;
       this.commonService.getAdType(data).subscribe(value => {
         this.listView = value.data;
       })
@@ -34,7 +36,7 @@ export class ListviewComponent implements OnInit {
 
   searchAds(val: any) {
     if (val !== null && val !== undefined && val !== '') {
-      this.commonService.getTopPicks().subscribe(data => {
+      this.commonService.getAdType(this._data).subscribe(data => {
         this.listView = data.data;
         this.listView = this.filterPipe.transform(this.listView, { title: val })
       });

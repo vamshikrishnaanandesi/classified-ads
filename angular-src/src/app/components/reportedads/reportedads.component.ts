@@ -46,7 +46,7 @@ export class ReportedadsComponent implements OnInit {
 
   searchAds(val: any) {
     if (val !== null && val !== undefined && val !== '') {
-      this.commonservice.getTopPicks().subscribe(data => {
+      this.commonservice.getReportedAds().subscribe(data => {
         this.listView = data.data;
         this.listView = this.filterPipe.transform(this.listView, { title: val })
       });

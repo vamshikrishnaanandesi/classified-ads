@@ -93,7 +93,7 @@
                         <div class="col-12">
 
                             <div class="col-md-12">
-                                <label>Description *</label>
+                                <label>Contact Details *</label>
                                 <textarea type="text" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.contact_details.errors }"
                                     formControlName="contact_details">
@@ -107,6 +107,27 @@
                                         100
                                         characters.</div>
                                     <div *ngIf="f.contact_details.errors.required">Contact Details is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+
+                            <div class="col-md-12">
+                                <label>Description *</label>
+                                <textarea type="text" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+                                    formControlName="description">
+                                    </textarea>
+                                <div *ngIf="submitted && f.contact_details.errors" class="invalid-feedback">
+                                    <div *ngIf="f.description.errors.minlength">Description must be at least
+                                        3
+                                        characters.</div>
+                                    <div *ngIf="f.description.errors.maxlength">Description must not be
+                                        exceed
+                                        100
+                                        characters.</div>
+                                    <div *ngIf="f.description.errors.required">Description is required.
                                     </div>
                                 </div>
                             </div>
