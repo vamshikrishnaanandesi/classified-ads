@@ -40,7 +40,7 @@ export class CommonService {
   }
 
   myAds(data: any): Observable<any> {
-    return this.http.post(this._config.urls.api + 'ads/get_ads_by_user_type', data)
+    return this.http.post(this._config.urls.api + 'ads/get_user_by_id', data)
   }
 
   deletePost(data: any): Observable<any> {

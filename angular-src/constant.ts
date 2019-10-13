@@ -15,7 +15,7 @@ export const config = {
                 { value: 'keys', display: 'Keys' }
             ]
         }, {
-            ad_type: { value: 'buy', display: 'Buy' },
+            ad_type: { value: 'buy', display: 'Sell' },
             ad_category: [
                 { value: 'electronics', display: 'Electronics' },
                 { value: 'households ', display: 'House Holds ' },
