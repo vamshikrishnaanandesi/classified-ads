@@ -11,6 +11,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class MyadsComponent implements OnInit {
   listView: any;
+  searched = false
   constructor(private filterPipe: FilterPipe, private location: Location, private commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
@@ -18,7 +19,13 @@ export class MyadsComponent implements OnInit {
     let data = {
       'user_id': sessionStorage.getItem('userID')
     }
-    this.commonService.myAds(data).subscribe(value => {
+    let sendObj:any;
+    if(data.user_id !==null && data.user_id !==undefined){
+      sendObj = data
+    }else{
+      sendObj = {'user_id':'5da2b386cc0fc620c99c0101'}
+    }
+    this.commonService.myAds(sendObj).subscribe(value => {
       this.listView = value.data;
     })
   }
@@ -36,13 +43,20 @@ export class MyadsComponent implements OnInit {
       let data = {
         'user_id': sessionStorage.getItem('userID')
       }
-      this.commonService.myAds(data).subscribe(data => {
+      let sendObj:any;
+      if(data.user_id !==null && data.user_id !==undefined){
+        sendObj = data
+      }else{
+        sendObj = {'user_id':'5da2b386cc0fc620c99c0101'}
+      }
+      this.commonService.myAds(sendObj).subscribe(data => {
         this.listView = data.data;
         this.listView = this.filterPipe.transform(this.listView, { title: val })
       });
     } else {
       this.ngOnInit();
     }
+    this.searched = true
   }
 
 }

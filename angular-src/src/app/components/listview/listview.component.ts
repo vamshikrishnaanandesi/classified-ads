@@ -14,14 +14,14 @@ import { FilterPipe } from 'ngx-filter-pipe';
 export class ListviewComponent implements OnInit {
   listView: any;
   searched = false;
-  _data: any;
+  _data: any = { 'ad_type': 'buy', 'ad_category': 'electronics' }
   constructor(private filterPipe: FilterPipe, private location: Location, private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
     this.activatedRoute.params.subscribe(data => {
-      this._data = data;
-      this.commonService.getAdType(data).subscribe(value => {
+      this._data = { 'ad_type': 'buy', 'ad_category': 'electronics' };
+      this.commonService.getAdType(this._data).subscribe(value => {
         this.listView = value.data;
       })
     })
@@ -44,5 +44,6 @@ export class ListviewComponent implements OnInit {
     } else {
       this.ngOnInit();
     }
+    this.searched=true
   }
 }
