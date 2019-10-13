@@ -17,9 +17,9 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ReportedadsComponent } from '../reportedads/reportedads.component';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { FilterPipeModule } from 'ngx-filter-pipe';
-describe('GridviewComponent', () => {
-  let component: GridviewComponent;
-  let fixture: ComponentFixture<GridviewComponent>;
+describe('ListviewComponent', () => {
+  let component: ListviewComponent;
+  let fixture: ComponentFixture<ListviewComponent>;
   let de: DebugElement;
   let el: HTMLElement;
 
@@ -40,18 +40,18 @@ describe('GridviewComponent', () => {
       imports: [FilterPipeModule,OwlModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserModule, ReactiveFormsModule, ToastrModule.forRoot()]
     })
       .compileComponents().then(() => {
-        fixture = TestBed.createComponent(GridviewComponent);
+        fixture = TestBed.createComponent(ListviewComponent);
         component = fixture.componentInstance;
         component.ngOnInit();
       })
   }));
 
   it(`should call search ads method with param null`, async(() => {
-    component.searchAds(null);
+    component.searchAds('null');
     expect(component.searched).toBeTruthy()
   }));
 
-  it(`should call the register method with param string`, async(() => {
+  it(`should call the search ads method with param string`, async(() => {
     component.searchAds('abc');
     expect(component.searched).toBeTruthy()
   }))

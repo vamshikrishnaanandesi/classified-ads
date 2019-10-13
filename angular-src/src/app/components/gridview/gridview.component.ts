@@ -14,6 +14,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class GridviewComponent implements OnInit {
   topPicks: any = [];
+  searched = false
   constructor(private filterPipe: FilterPipe, private location: Location, private commonService: CommonService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -41,5 +42,6 @@ export class GridviewComponent implements OnInit {
     } else {
       this.ngOnInit();
     }
+    this.searched = true
   }
 }

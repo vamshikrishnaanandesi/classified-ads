@@ -13,6 +13,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class ListviewComponent implements OnInit {
   listView: any;
+  searched = false;
   _data: any;
   constructor(private filterPipe: FilterPipe, private location: Location, private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) { }
 

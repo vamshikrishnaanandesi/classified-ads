@@ -15,6 +15,8 @@ import { PostviewComponent } from '../postview/postview.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OwlModule } from 'ngx-owl-carousel';
+import { MyadsComponent } from '../myads/myads.component';
+import { ReportedadsComponent } from '../reportedads/reportedads.component';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -29,6 +31,8 @@ describe('LoginComponent', () => {
         ListviewComponent,
         PostviewComponent,
         SearchbarComponent,
+        MyadsComponent,
+        ReportedadsComponent
       ],
       providers: [
         FormBuilder
