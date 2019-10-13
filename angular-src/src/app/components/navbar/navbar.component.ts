@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
       'category': [''],
       'price': ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(this.numPattern)])],
       "contact_details": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
-      // "status": ['', Validators.required],
+      "description": ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
     });
 
     this.reportForm = this.formBuilder.group({
