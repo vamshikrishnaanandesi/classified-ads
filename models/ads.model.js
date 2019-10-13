@@ -26,8 +26,7 @@ const AdSchema = mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
-        enum: ['electronics', 'books', 'jewellery', 'vehicles', 'misc']
+        type: String
     },
     status: {
         type: String,
