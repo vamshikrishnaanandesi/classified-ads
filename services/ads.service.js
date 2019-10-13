@@ -56,5 +56,6 @@ module.exports = {
   getAdsByType,
   reportAd,
   deleteAd,
+  updateAd,
   findReportedAds
 };
