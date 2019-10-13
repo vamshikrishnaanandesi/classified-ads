@@ -17,6 +17,10 @@ const AdSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
     images: [{
         url: String
     }],
@@ -26,8 +30,7 @@ const AdSchema = mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
-        enum: ['electronics', 'books', 'jewellery', 'vehicles', 'misc']
+        type: String
     },
     status: {
         type: String,

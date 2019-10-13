@@ -114,4 +114,22 @@ router.post('/authenticate', (req, res, next) => {
 
 });
 
+router.post('/get_user_by_id', (req, res) => {
+  let data = req.body;
+  User.getUserByID(data.user_id)
+  .then(response => {
+    console.log(response);
+    if (!response) {
+      throw {
+        reason: "failed"
+      };
+    }
+    else {
+      res
+        .status(HttpStatus.ACCEPTED)
+        .json({ success: true, msg: "Fetched", data: response });
+    }
+  })
+})
+
 module.exports = router;
