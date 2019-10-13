@@ -28,7 +28,8 @@ function upload_images(images_data) {
 
     if (images_data[key])
       utils.uploadToS3(imageKey, fileExt, images_data[key].image_data);
-    images.push({ url: imageKey + "." + fileExt });
+      let url = imageKey + "." + fileExt;
+    images.push({ url: utils.getPreSignedURL(url) });
   }
 
   return images;
@@ -75,15 +76,15 @@ router.post("/get_one_ad", (req, res) => {
             reason: "failed"
           };
         } else {
-          let image_data = [];
-          if (response.images.length != 0) {
-            response.images.forEach(element => {
-              image_data.push({
-                url: utils.getPreSignedURL(element.url)
-              });
-            });
-          }
-          response.images = image_data;
+          // let image_data = [];
+          // if (response.images.length != 0) {
+          //   response.images.forEach(element => {
+          //     image_data.push({
+          //       url: utils.getPreSignedURL(element.url)
+          //     });
+          //   });
+          // }
+          // response.images = image_data;
           res
             .status(HttpStatus.ACCEPTED)
             .json({ success: true, msg: "Fetched", data: response });
@@ -122,17 +123,17 @@ router.get("/get_top_picks", (req, res) => {
           reason: "failed"
         };
       } else {
-        for (i = 0; i < response.length; i++) {
-          let image_data = [];
-          if (response[i].images.length != 0) {
-            response[i].images.forEach(element => {
-              image_data.push({
-                url: utils.getPreSignedURL(element.url)
-              });
-            });
-          }
-          response[i].images = image_data;
-        }
+        // for (i = 0; i < response.length; i++) {
+        //   let image_data = [];
+        //   if (response[i].images.length != 0) {
+        //     response[i].images.forEach(element => {
+        //       image_data.push({
+        //         url: utils.getPreSignedURL(element.url)
+        //       });
+        //     });
+        //   }
+        //   response[i].images = image_data;
+        // }
         res
           .status(HttpStatus.ACCEPTED)
           .json({ success: true, msg: "Fetched", data: response });
@@ -176,17 +177,17 @@ router.post("/get_ads_by_type", (req, res) => {
             reason: "failed"
           };
         } else {
-          for (i = 0; i < response.length; i++) {
-            let image_data = [];
-            if (response[i].images.length != 0) {
-              response[i].images.forEach(element => {
-                image_data.push({
-                  url: utils.getPreSignedURL(element.url)
-                });
-              });
-            }
-            response[i].images = image_data;
-          }
+          // for (i = 0; i < response.length; i++) {
+          //   let image_data = [];
+          //   if (response[i].images.length != 0) {
+          //     response[i].images.forEach(element => {
+          //       image_data.push({
+          //         url: utils.getPreSignedURL(element.url)
+          //       });
+          //     });
+          //   }
+          //   response[i].images = image_data;
+          // }
           res
             .status(HttpStatus.ACCEPTED)
             .json({ success: true, msg: "Fetched", data: response });
@@ -232,17 +233,17 @@ router.post("/get_ads_by_user_type", (req, res) => {
             reason: "failed"
           };
         } else {
-          for (i = 0; i < response.length; i++) {
-            let image_data = [];
-            if (response[i].images.length != 0) {
-              response[i].images.forEach(element => {
-                image_data.push({
-                  url: utils.getPreSignedURL(element.url)
-                });
-              });
-            }
-            response[i].images = image_data;
-          }
+          // for (i = 0; i < response.length; i++) {
+          //   let image_data = [];
+          //   if (response[i].images.length != 0) {
+          //     response[i].images.forEach(element => {
+          //       image_data.push({
+          //         url: utils.getPreSignedURL(element.url)
+          //       });
+          //     });
+          //   }
+          //   response[i].images = image_data;
+          // }
           res
             .status(HttpStatus.ACCEPTED)
             .json({ success: true, msg: "Fetched", data: response });
