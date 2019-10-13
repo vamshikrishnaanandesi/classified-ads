@@ -18,7 +18,7 @@
         </div>
         <div class="images">
             <img (click)="redirectToPost(x._id)"
-                [src]="x.ads[0][0].images.length !== 0 ? 'x.ads[0][0].images[0].url' : '../assets/images/images.png'" />
+                [src]="x.ads[0][0].images.length !== 0 ? x.ads[0][0].images[0].url : '../assets/images/images.png'" />
         </div>
         <div class="product">
             <span (click)="redirectToPost(x._id)" style="cursor: pointer;">{{x.ads[0][0].title | uppercase}}</span>
