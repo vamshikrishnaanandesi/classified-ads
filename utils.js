@@ -36,6 +36,8 @@ const getPreSignedURL = (awsFileKey) => {
   };
   try {
       let url = s3.getSignedUrl('getObject', params);
+      let index = url.indexOf("?");
+      url = url.slice(0, index);
       return url;
       
   } catch (err) {
