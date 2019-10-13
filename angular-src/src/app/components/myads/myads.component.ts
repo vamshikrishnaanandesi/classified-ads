@@ -16,7 +16,6 @@ export class MyadsComponent implements OnInit {
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
     let data = {
-      'user_type': sessionStorage.getItem('role'),
       'user_id': sessionStorage.getItem('userID')
     }
     this.commonService.myAds(data).subscribe(value => {
@@ -35,7 +34,6 @@ export class MyadsComponent implements OnInit {
   searchAds(val: any) {
     if (val !== null && val !== undefined && val !== '') {
       let data = {
-        'user_type': sessionStorage.getItem('role'),
         'user_id': sessionStorage.getItem('userID')
       }
       this.commonService.myAds(data).subscribe(data => {
