@@ -10,9 +10,11 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { GridviewComponent } from '../gridview/gridview.component';
 import { ListviewComponent } from '../listview/listview.component';
 import { PostviewComponent } from '../postview/postview.component';
+import { MyadsComponent } from '../myads/myads.component';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OwlModule } from 'ngx-owl-carousel';
+import { ReportedadsComponent } from '../reportedads/reportedads.component';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
@@ -27,6 +29,8 @@ describe('RegisterComponent', () => {
         ListviewComponent,
         PostviewComponent,
         SearchbarComponent,
+        MyadsComponent,
+        ReportedadsComponent
       ],
       providers: [
         FormBuilder
