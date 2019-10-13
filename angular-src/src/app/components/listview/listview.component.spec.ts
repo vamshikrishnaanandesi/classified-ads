@@ -47,11 +47,11 @@ describe('ListviewComponent', () => {
   }));
 
   it(`should call search ads method with param null`, async(() => {
-    component.searchAds(null);
+    component.searchAds('null');
     expect(component.searched).toBeTruthy()
   }));
 
-  it(`should call the register method with param string`, async(() => {
+  it(`should call the search ads method with param string`, async(() => {
     component.searchAds('abc');
     expect(component.searched).toBeTruthy()
   }))
