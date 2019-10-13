@@ -45,13 +45,15 @@ export class ReportedadsComponent implements OnInit {
   }
 
   searchAds(val: any) {
-    alert(val)
     if (val !== null && val !== undefined && val !== '') {
       this.commonservice.getReportedAds().subscribe(data => {
         this.listView = data.data;
-        console.log(this.listView)
+        this.listView.forEach(element => {
+          if (element.ads[0].length !== 0) {
+            element['title'] = element.ads[0].title;
+          }
+        });
         this.listView = this.filterPipe.transform(this.listView, { title: val })
-        console.log(this.listView);
       });
     } else {
       this.ngOnInit();
