@@ -20,7 +20,7 @@ export class ListviewComponent implements OnInit {
   ngOnInit() {
     sessionStorage.setItem('post', 'false');
     this.activatedRoute.params.subscribe(data => {
-      this._data = { 'ad_type': 'buy', 'ad_category': 'electronics' };
+      this._data = { 'ad_type': data.ad_type, 'ad_category': data.ad_category };
       this.commonService.getAdType(this._data).subscribe(value => {
         this.listView = value.data;
       })

@@ -28,7 +28,7 @@ function upload_images(images_data) {
 
     if (images_data[key])
       utils.uploadToS3(imageKey, fileExt, images_data[key].image_data);
-      let url = imageKey + "." + fileExt;
+    let url = imageKey + "." + fileExt;
     images.push({ url: utils.getPreSignedURL(url) });
   }
 
@@ -158,6 +158,7 @@ router.get("/get_top_picks", (req, res) => {
 
 // find one product -start
 router.post("/get_ads_by_type", (req, res) => {
+  console.log("GET REQUEST...", req.body.ad_type)
   req.assert("ad_type", "Ad type should not be empty").notEmpty();
   var errors = req.validationErrors();
   let query = {};
@@ -188,6 +189,7 @@ router.post("/get_ads_by_type", (req, res) => {
           //   }
           //   response[i].images = image_data;
           // }
+          console.log(response);
           res
             .status(HttpStatus.ACCEPTED)
             .json({ success: true, msg: "Fetched", data: response });

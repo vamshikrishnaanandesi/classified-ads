@@ -32,6 +32,7 @@ export class CommonService {
   }
 
   getAdType(data: any): Observable<any> {
+    console.log(data)
     return this.http.post(this._config.urls.api + 'ads/get_ads_by_type', data);
   }
 
