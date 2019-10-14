@@ -17,9 +17,9 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ReportedadsComponent } from '../reportedads/reportedads.component';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { FilterPipeModule } from 'ngx-filter-pipe';
-describe('ListviewComponent', () => {
-  let component: ListviewComponent;
-  let fixture: ComponentFixture<ListviewComponent>;
+describe('PostviewComponent', () => {
+  let component: PostviewComponent;
+  let fixture: ComponentFixture<PostviewComponent>;
   let de: DebugElement;
   let el: HTMLElement;
 
@@ -40,19 +40,14 @@ describe('ListviewComponent', () => {
       imports: [FilterPipeModule,OwlModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserModule, ReactiveFormsModule, ToastrModule.forRoot()]
     })
       .compileComponents().then(() => {
-        fixture = TestBed.createComponent(ListviewComponent);
+        fixture = TestBed.createComponent(PostviewComponent);
         component = fixture.componentInstance;
         component.ngOnInit();
       })
   }));
 
-  it(`should call search ads method with param null in listview`, async(() => {
-    component.searchAds('null');
-    expect(component.searched).toBeTruthy()
+  it(`should call ngOnInit to get images`, async(() => {
+    component.ngOnInit();
+    expect(component.triggerFuc).toBeTruthy()
   }));
-
-  it(`should call the search ads method with param string in listview`, async(() => {
-    component.searchAds('abc');
-    expect(component.searched).toBeTruthy()
-  }))
 });

@@ -35,7 +35,11 @@ export class SearchbarComponent implements OnInit {
 
   get_list(menu, submenu) {
     this.ad_type = menu;
-    this.router.navigate(['list', { 'ad_type': menu, 'ad_category': submenu }]);
+    if (submenu == null) {
+      this.router.navigate(['list', { 'ad_type': menu }]);
+    } else {
+      this.router.navigate(['list', { 'ad_type': menu, 'ad_category': submenu }]);
+    }
   }
 
   backToHome() {

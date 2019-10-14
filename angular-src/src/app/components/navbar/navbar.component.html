@@ -27,7 +27,7 @@
             </div>
 
             <div class="modal-body">
-                <form *ngIf="postAdForm" [formGroup]="postForm">
+                <form *ngIf="postAdForm" [formGroup]="postForm" name="postad">
                     <div class="row">
                         <div class="col-12">
                             <div class="col-md-6">
@@ -37,140 +37,142 @@
                                     [ngClass]="{ 'is-invalid': submitted && f.ad_type.errors }"
                                     (change)="getAd_category($event.target.value)">
                                     <option value="">Select</option>
-                                    <option [value]="x.ad_type.value" *ngFor="let x of ad_Type">{{x.ad_type.display}}
+                                    <option [value]="x.ad_type.value" *ngFor="let x of ad_Type">
+                                        <span *ngIf="x.ad_type.display == 'Buy'">Sell</span>
+                                        <span *ngIf="x.ad_type.display !== 'Buy'">{{x.ad_type.display}}</span>
                                     </option>
                                 </select>
-                                <div *ngIf="submitted && f.ad_type.errors" class="invalid-feedback">
-                                    <div *ngIf="f.ad_type.errors.required">Ad Type is required.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Title *</label>
-                                <input [ngClass]="{ 'is-invalid': submitted && f.title.errors }" class="form-control"
-                                    formControlName="title" type="text">
-                                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
-                                    <div *ngIf="f.title.errors.required">Title is required.</div>
-                                    <div *ngIf="f.title.errors.minlength">Title must be at least 3
-                                        characters..</div>
-                                    <div *ngIf="f.title.errors.maxlength">Title must not be exceed 100
-                                        characters.</div>
-                                </div>
+                                <div *ngIf=" submitted && f.ad_type.errors" class="invalid-feedback">
+                                            <div *ngIf="f.ad_type.errors.required">Ad Type is required.</div>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-
-                        <div class="col-12">
-                            <div class="col-md-6">
-                                <label>Price *</label>
-                                <input type="text" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price">
-                                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                    <div *ngIf="f.price.errors.required">Price is required.</div>
-                                    <div *ngIf="f.price.errors.minlength">Price must be at least 1
-                                        characters..</div>
-                                    <div *ngIf="f.price.errors.maxlength">Price must not be exceed 6
-                                        characters.</div>
-                                    <div *ngIf="f.price.errors.pattern">Please Enter Valid Price.</div>
-                                </div>
+                        <div class="col-md-6">
+                            <label>Title *</label>
+                            <input [ngClass]="{ 'is-invalid': submitted && f.title.errors }" class="form-control"
+                                formControlName="title" type="text">
+                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                <div *ngIf="f.title.errors.required">Title is required.</div>
+                                <div *ngIf="f.title.errors.minlength">Title must be at least 3
+                                    characters..</div>
+                                <div *ngIf="f.title.errors.maxlength">Title must not be exceed 100
+                                    characters.</div>
                             </div>
-                            <div class="col-md-6">
-                                <label>Category</label>
-                                <select formControlName="category" type="text" name="category" class="form-control"
-                                    placeholder="electronics" value=""
-                                    [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
-                                    <option value="">--Select--</option>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
 
-                                    <option [value]="x.value" *ngFor="let x of ad_category">
-                                        {{x.display}}</option>
-                                </select>
-                                <!-- <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                    <div class="col-12">
+                        <div class="col-md-6">
+                            <label>Price *</label>
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price">
+                            <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                <div *ngIf="f.price.errors.required">Price is required.</div>
+                                <div *ngIf="f.price.errors.minlength">Price must be at least 1
+                                    characters..</div>
+                                <div *ngIf="f.price.errors.maxlength">Price must not be exceed 6
+                                    characters.</div>
+                                <div *ngIf="f.price.errors.pattern">Please Enter Valid Price.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Category</label>
+                            <select formControlName="category" type="text" name="category" class="form-control"
+                                placeholder="electronics" value=""
+                                [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                                <option value="">--Select--</option>
+
+                                <option [value]="x.value" *ngFor="let x of ad_category">
+                                    {{x.display}}</option>
+                            </select>
+                            <!-- <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
                                     <div *ngIf="f.category.errors.required">Category is required.</div>
                                 </div> -->
-                            </div>
                         </div>
-                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
 
-                        <div class="col-12">
+                    <div class="col-12">
 
-                            <div class="col-md-12">
-                                <label>Contact Details *</label>
-                                <textarea type="text" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.contact_details.errors }"
-                                    formControlName="contact_details">
+                        <div class="col-md-12">
+                            <label>Contact Details *</label>
+                            <textarea type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.contact_details.errors }"
+                                formControlName="contact_details">
                                     </textarea>
-                                <div *ngIf="submitted && f.contact_details.errors" class="invalid-feedback">
-                                    <div *ngIf="f.contact_details.errors.minlength">Contact Details must be at least
-                                        3
-                                        characters.</div>
-                                    <div *ngIf="f.contact_details.errors.maxlength">Contact Details must not be
-                                        exceed
-                                        100
-                                        characters.</div>
-                                    <div *ngIf="f.contact_details.errors.required">Contact Details is required.
-                                    </div>
+                            <div *ngIf="submitted && f.contact_details.errors" class="invalid-feedback">
+                                <div *ngIf="f.contact_details.errors.minlength">Contact Details must be at least
+                                    3
+                                    characters.</div>
+                                <div *ngIf="f.contact_details.errors.maxlength">Contact Details must not be
+                                    exceed
+                                    100
+                                    characters.</div>
+                                <div *ngIf="f.contact_details.errors.required">Contact Details is required.
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                    </div>
+                    <div class="col-12">
 
-                            <div class="col-md-12">
-                                <label>Description *</label>
-                                <textarea type="text" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
-                                    formControlName="description">
-                                    </textarea>
-                                <div *ngIf="submitted && f.contact_details.errors" class="invalid-feedback">
-                                    <div *ngIf="f.description.errors.minlength">Description must be at least
-                                        3
-                                        characters.</div>
-                                    <div *ngIf="f.description.errors.maxlength">Description must not be
-                                        exceed
-                                        100
-                                        characters.</div>
-                                    <div *ngIf="f.description.errors.required">Description is required.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-12">
-                            <div class="col-md-12">
-                                <label>Upload Images</label>
-                                <input type='file' (change)="onSelectFile($event)" multiple class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" (click)="postAd()">Post</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-                <form *ngIf="!postAdForm" [formGroup]="reportForm">
-                    <div class="row">
                         <div class="col-md-12">
                             <label>Description *</label>
                             <textarea type="text" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted1 && f1.description.errors }"
+                                [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
                                 formControlName="description">
-                                                </textarea>
-                            <div *ngIf="submitted1 && f1.description.errors" class="invalid-feedback">
-                                <div *ngIf="f1.description.errors.minlength">Description must be at least
+                                    </textarea>
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.minlength">Description must be at least
                                     3
                                     characters.</div>
-                                <div *ngIf="f1.description.errors.maxlength">Description must not be
+                                <div *ngIf="f.description.errors.maxlength">Description must not be
                                     exceed
-                                    500
+                                    100
                                     characters.</div>
-                                <div *ngIf="f1.description.errors.required">Description is required.
+                                <div *ngIf="f.description.errors.required">Description is required.
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" (click)="reportAd()">Report</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <div class="clearfix"></div>
+                    <div class="col-12">
+                        <div class="col-md-12">
+                            <label>Upload Images</label>
+                            <input type='file' (change)="onSelectFile($event)" multiple class="form-control">
+                        </div>
                     </div>
-                </form>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="postAd()">Post</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+            <form *ngIf="!postAdForm" [formGroup]="reportForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Description *</label>
+                        <textarea type="text" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted1 && f1.description.errors }"
+                            formControlName="description">
+                                                </textarea>
+                        <div *ngIf="submitted1 && f1.description.errors" class="invalid-feedback">
+                            <div *ngIf="f1.description.errors.minlength">Description must be at least
+                                3
+                                characters.</div>
+                            <div *ngIf="f1.description.errors.maxlength">Description must not be
+                                exceed
+                                500
+                                characters.</div>
+                            <div *ngIf="f1.description.errors.required">Description is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="reportAd()">Report</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>

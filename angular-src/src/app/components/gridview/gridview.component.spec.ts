@@ -46,12 +46,12 @@ describe('GridviewComponent', () => {
       })
   }));
 
-  it(`should call search ads method with param null`, async(() => {
+  it(`should call search ads method with param null in gridview`, async(() => {
     component.searchAds(null);
     expect(component.searched).toBeTruthy()
   }));
 
-  it(`should call the register method with param string`, async(() => {
+  it(`should call the register method with param string in gridview`, async(() => {
     component.searchAds('abc');
     expect(component.searched).toBeTruthy()
   }))

@@ -13,7 +13,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class ReportedadsComponent implements OnInit {
   listView: any = [];
-
+  searched = false;
   constructor(private filterPipe: FilterPipe, private router: Router, private location: Location, private toaster: ToastrService, private commonservice: CommonService) { }
 
   ngOnInit() {
@@ -58,5 +58,6 @@ export class ReportedadsComponent implements OnInit {
     } else {
       this.ngOnInit();
     }
+      this.searched = true
   }
 }
